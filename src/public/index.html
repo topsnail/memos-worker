@@ -4,6 +4,9 @@
 	<meta charset='UTF-8'>
 	<meta name='viewport' content='width=device-width, initial-scale=1.0'>
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.12/marked.min.js'></script>
+	<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css'>
+	<script defer src='https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js'></script>
+	<script defer src='https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js'></script>
 	<title>Memos 笔记</title>
 	<script src='https://unpkg.com/turndown@7.2.1/dist/turndown.js'></script>
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js'></script>
@@ -4036,27 +4039,35 @@
 	}
 
 	function postProcessMarkdownHtml(html) {
-		if (!html || html.indexOf('#') === -1) {
-			return html;
-		}
+		if (!html) return html;
+
 		const tempDiv = document.createElement('div');
 		tempDiv.innerHTML = html;
+
+		// 处理 #tag 形式的标签
 		const walker = document.createTreeWalker(tempDiv, NodeFilter.SHOW_TEXT);
 		let currentNode;
 		const nodesToProcess = [];
 
 		while (currentNode = walker.nextNode()) {
-			if (currentNode.parentElement.tagName !== 'A' && currentNode.nodeValue.includes('#')) {
+			if (
+				currentNode.parentElement &&
+				currentNode.parentElement.tagName !== 'A' &&
+				currentNode.nodeValue.includes('#')
+			) {
 				nodesToProcess.push(currentNode);
 			}
 		}
+
 		const tagRegex = /(#[\p{L}\p{N}_-]+)/gu;
 		nodesToProcess.forEach(node => {
 			const parent = node.parentElement;
 			const text = node.nodeValue;
 			if (!tagRegex.test(text)) return;
+
 			const fragment = document.createDocumentFragment();
 			let lastIndex = 0;
+
 			text.replace(tagRegex, (match, tagName, offset) => {
 				if (offset > lastIndex) {
 					fragment.appendChild(document.createTextNode(text.substring(lastIndex, offset)));
@@ -4069,11 +4080,30 @@
 				fragment.appendChild(link);
 				lastIndex = offset + match.length;
 			});
+
 			if (lastIndex < text.length) {
 				fragment.appendChild(document.createTextNode(text.substring(lastIndex)));
 			}
 			parent.replaceChild(fragment, node);
 		});
+
+		// 处理公式渲染（支持 $...$、$$...$$、\(...\)、\[...\]）
+		if (window.renderMathInElement) {
+			try {
+				window.renderMathInElement(tempDiv, {
+					delimiters: [
+						{ left: '$$', right: '$$', display: true },
+						{ left: '\\[', right: '\\]', display: true },
+						{ left: '$', right: '$', display: false },
+						{ left: '\\(', right: '\\)', display: false }
+					],
+					throwOnError: false
+				});
+			} catch (e) {
+				console.error('KaTeX 渲染公式出错：', e);
+			}
+		}
+
 		return tempDiv.innerHTML;
 	}
 
