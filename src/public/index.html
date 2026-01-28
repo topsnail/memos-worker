@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang='en'>
+<html lang='zh-CN'>
 <head>
 	<meta charset='UTF-8'>
 	<meta name='viewport' content='width=device-width, initial-scale=1.0'>
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.12/marked.min.js'></script>
-	<title>MEMOS-WORKER</title>
+	<title>Memos 笔记</title>
 	<script src='https://unpkg.com/turndown@7.2.1/dist/turndown.js'></script>
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js'></script>
 	<link id='hljs-light-theme' rel='stylesheet'
@@ -1088,7 +1088,7 @@
 
   .note.editing[data-edit-mode="preview"] .edit-textarea,
   .note.editing[data-edit-mode="preview"] .edit-files-container,
-  .note.editing[data-edit-mode="preview"] label[title="Add files"] {
+  .note.editing[data-edit-mode="preview"] label[title="添加文件"] {
 	display: none;
   }
 
@@ -3054,9 +3054,9 @@
 	<form id='login-form' class='auth-form'>
 		<h3>MEMOS</h3>
 		<div id='login-error'></div>
-		<input type='text' id='username' placeholder='Username' required>
-		<input type='password' id='password' placeholder='Password' required>
-		<button type='submit' id='login-btn'>Login</button>
+		<input type='text' id='username' placeholder='用户名' required>
+		<input type='password' id='password' placeholder='密码' required>
+		<button type='submit' id='login-btn'>登录</button>
 	</form>
 </div>
 <!-- 一个包裹三栏的容器 -->
@@ -3070,8 +3070,8 @@
 				<path
 					d='M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'></path>
 			</svg>
-			<input type='search' id='global-search-input' placeholder='Search...'>
-			<button id='clear-search-btn' class='icon-btn' style='display: none;' title='Clear'>
+			<input type='search' id='global-search-input' placeholder='搜索...'>
+			<button id='clear-search-btn' class='icon-btn' style='display: none;' title='清除'>
 				<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>
 					<path
 						d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'></path>
@@ -3083,15 +3083,15 @@
 		<div id='stats-card' class='sidebar-content'>
 			<div class='stat-item'>
 				<span id='stats-days' class='stat-value'>--</span>
-				<span class='stat-label'>Days</span>
+				<span class='stat-label'>天数</span>
 			</div>
 			<div class='stat-item'>
 				<span id='stats-memos' class='stat-value'>--</span>
-				<span class='stat-label'>Memos</span>
+				<span class='stat-label'>笔记</span>
 			</div>
 			<div class='stat-item'>
 				<span id='stats-tags' class='stat-value'>--</span>
-				<span class='stat-label'>Tags</span>
+				<span class='stat-label'>标签</span>
 			</div>
 		</div>
 
@@ -3103,9 +3103,9 @@
 
 		<div class='sidebar-content' id='tags-section-wrapper'>
 			<h4>
-				<span>Tags</span>
+				<span>标签</span>
 				<div class='sidebar-header-actions'>
-					<button id='clear-tags-filter-btn' class='icon-btn' title='Clear tag filter'></button>
+					<button id='clear-tags-filter-btn' class='icon-btn' title='清除标签筛选'></button>
 					<button class='sidebar-toggle-btn' data-target='tags-container'>
 						<svg class='toggle-icon' xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px'
 								 fill='currentColor'>
@@ -3122,9 +3122,9 @@
 
 		<div class='sidebar-content' id='timeline-section-wrapper'>
 			<h4>
-				<span>Timeline</span>
+				<span>时间线</span>
 				<div class='sidebar-header-actions'>
-					<button id='clear-filter-btn' class='icon-btn' title='Show All Notes'></button>
+					<button id='clear-filter-btn' class='icon-btn' title='显示所有笔记'></button>
 					<button class='sidebar-toggle-btn' data-target='timeline-container'>
 						<svg class='toggle-icon' xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px'
 								 fill='currentColor'>
@@ -3147,38 +3147,38 @@
 				<header class='app-header'>
 					<h3 id='header-title'>MEMOS</h3>
 					<div class='header-actions'>
-						<button type='button' id='refresh-btn' class='icon-btn' title='Refresh'>
+						<button type='button' id='refresh-btn' class='icon-btn' title='刷新'>
 							<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>
 								<path
 									d='M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z'></path>
 							</svg>
 						</button>
-						<button id='waterfall-toggle-btn' class='icon-btn' title='Toggle waterfall mode'>
+						<button id='waterfall-toggle-btn' class='icon-btn' title='切换瀑布流模式'>
 							<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><path d='M0 0h24v24H0V0z' fill='none' /><path d='M10 18h5V5h-5v13zm-6 0h5V5H4v13zM16 5v13h5V5h-5z' /></svg>
 						</button>
-						<button id='wide-mode-toggle-btn' class='icon-btn' title='Toggle wide mode'>
+						<button id='wide-mode-toggle-btn' class='icon-btn' title='切换宽屏模式'>
 							<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'><path d='M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z'></path></svg>
 						</button>
 
 						<div id='more-actions-container' class='more-actions-container'>
-							<button id='more-actions-btn' class='icon-btn' title='More options'>
+							<button id='more-actions-btn' class='icon-btn' title='更多选项'>
 								<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><path d='M0 0h24v24H0V0z' fill='none'/><path d='M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z'/></svg>
 							</button>
 
 							<div id='more-menu-popover' class='more-menu-popover'>
 								<button id='settings-btn' class='more-menu-item'>
 									<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><path d='M0 0h24v24H0V0z' fill='none' /><path d='M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.09-.7-1.71-.98L14.82 2.8c-.05-.23-.26-.4-.5-.4h-4c-.25 0-.46.17-.5.4L9.19 5.3c-.62.27-1.19.58-1.71.98l-2.49-1c-.22-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.09.7 1.71.98l.37 2.66c.05.23.26.4.5.4h4c.25 0 .46-.17-.5-.4l.37-2.66c.62-.28 1.19-.58 1.71-.98l2.49 1c.22.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z' /></svg>
-									<span>Settings</span>
+									<span>设置</span>
 								</button>
 								<button id='theme-toggle-btn' class='more-menu-item'></button>
 
 								<button id='theme-color-btn' class='more-menu-item'>
 									<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><path d='M0 0h24v24H0V0z' fill='none' /><path d='M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z' /></svg>
-									<span>Theme Color</span>
+									<span>主题颜色</span>
 								</button>
 								<button id='logout-btn' class='more-menu-item'>
 									<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'><path d='M16 17v-3H9v-2h7V9l4 4-4 4zm-5-3h-1v-2h1v2zm-2 3h-1v-2h1v2zm-7-11v16h14v-2H4V4h10V2H2v16z'></path></svg>
-									<span>Logout</span>
+									<span>退出登录</span>
 								</button>
 							</div>
 						</div>
@@ -3187,14 +3187,14 @@
 
 				<form id='note-form'>
 					<div id='main-editor-container'>
-						<textarea id='note-input' placeholder='Write in Markdown...' rows='3'></textarea>
+						<textarea id='note-input' placeholder='使用 Markdown 编写...' rows='3'></textarea>
 						<div id='main-edit-preview' class='edit-preview note-content'></div>
 					</div>
 
 					<div class='form-actions'>
 						<!-- 左侧工具组 -->
 						<div class='toolbar-group-left'>
-							<button type='button' id='insert-tag-btn' class='icon-btn' title='Insert tag (#)'>
+							<button type='button' id='insert-tag-btn' class='icon-btn' title='插入标签 (#)'>
 								<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'
 										 stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'
 										 class='lucide lucide-hash size-5' data-darkreader-inline-stroke=''
@@ -3206,10 +3206,10 @@
 								</svg>
 							</button>
 							<div id='tag-dropdown' class='tag-dropdown-container'>
-								<input type='text' id='tag-search-input' placeholder='Search or select tag...'>
+								<input type='text' id='tag-search-input' placeholder='搜索或选择标签...'>
 								<ul id='tag-dropdown-list'></ul>
 							</div>
-							<button type='button' id='insert-image-btn' class='icon-btn' title='Insert image'>
+							<button type='button' id='insert-image-btn' class='icon-btn' title='插入图片'>
 								<svg xmlns='http://www.w3.org/2000/svg' height='20px' viewBox='0 0 24 24' width='20px'
 										 fill='currentColor'>
 									<path d='M0 0h24v24H0V0z' fill='none' />
@@ -3225,7 +3225,7 @@
 <!--										d='M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z' />-->
 <!--								</svg>-->
 <!--							</button>-->
-							<button type='button' id='select-files-btn' class='icon-btn' title='Select files'>
+							<button type='button' id='select-files-btn' class='icon-btn' title='选择文件'>
 								<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>
 									<path
 										d='M16.5 6v11.5c0 2.21-1.79 4-4 4s-4-1.79-4-4V5c0-1.38 1.12-2.5 2.5-2.5s2.5 1.12 2.5 2.5v10.5c0 .55-.45 1-1 1s-1-.45-1-1V6H10v9.5c0 1.38 1.12 2.5 2.5 2.5s2.5-1.12 2.5-2.5V5c0-2.21-1.79-4-4-4S7 2.79 7 5v12.5c0 3.04 2.46 5.5 5.5 5.5s5.5-2.46 5.5-5.5V6h-1.5z'></path>
@@ -3236,12 +3236,12 @@
 						</div>
 						<!-- 右侧工具组 -->
 						<div class='toolbar-group-right'>
-							<button type='button' id='enter-fullscreen-btn' class='icon-btn' title='Fullscreen Editor'>
+							<button type='button' id='enter-fullscreen-btn' class='icon-btn' title='全屏编辑'>
 								<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>
 									<path d='M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z'></path>
 								</svg>
 							</button>
-							<button type='button' id='main-preview-toggle-btn' class='icon-btn' title='Toggle Preview'>
+							<button type='button' id='main-preview-toggle-btn' class='icon-btn' title='切换预览'>
 								<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' stroke-width='2'
 										 stroke='currentColor' fill='none' stroke-linecap='round' stroke-linejoin='round'>
 									<path stroke='none' d='M0 0h24v24H0z' fill='none' />
@@ -3250,14 +3250,14 @@
 										d='M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7' />
 								</svg>
 							</button>
-							<button type='button' id='main-split-toggle-btn' class='icon-btn' title='Toggle Split View'>
+							<button type='button' id='main-split-toggle-btn' class='icon-btn' title='切换分栏视图'>
 								<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px'
 										 fill='currentColor'>
 									<path d='M0 0h24v24H0V0z' fill='none' />
 									<path d='M3 15h8v-2H3v2zm0 4h8v-2H3v2zm0-8h8V9H3v2zm0-6v2h8V5H3zm10 0h8v14h-8V5z' />
 								</svg>
 							</button>
-							<button type='submit' id='submit-btn' style='margin-left: 8px'>Save</button>
+							<button type='submit' id='submit-btn' style='margin-left: 8px'>保存</button>
 						</div>
 					</div>
 					<div id='file-list-display' class='file-list-display'></div>
@@ -3269,18 +3269,18 @@
 					</div>
 					<div id='notes-container'></div>
 				</div>
-				<div id='scroll-loader' class='loading-indicator' style='display: none;'>Loading more...</div>
+					<div id='scroll-loader' class='loading-indicator' style='display: none;'>加载更多...</div>
 			</div>
 
 			<!-- 附件浏览页面容器 -->
 			<div id="attachments-viewer" style="display: none;">
 				<header class="attachments-header">
-					<h3>Files</h3>
+					<h3>文件</h3>
 					<div class="attachments-tabs">
-						<button class="tab-btn active" data-filter="all">✨ All</button>
-						<button class="tab-btn" data-filter="image">🏞️ Images</button>
-						<button class="tab-btn" data-filter="video">🎬 Videos</button>
-						<button class="tab-btn" data-filter="file">📄 Files</button>
+						<button class="tab-btn active" data-filter="all">✨ 全部</button>
+						<button class="tab-btn" data-filter="image">🏞️ 图片</button>
+						<button class="tab-btn" data-filter="video">🎬 视频</button>
+						<button class="tab-btn" data-filter="file">📄 文件</button>
 					</div>
 				</header>
 				<div id="attachments-content" class="loading-state">
@@ -3293,32 +3293,32 @@
 
 	<aside id='right-sidebar'>
 		<div class='sidebar-buttons-group'>
-			<button id='home-tab-btn' class='sidebar-tab-btn active' data-tab-name='home' title='Home'>
+			<button id='home-tab-btn' class='sidebar-tab-btn active' data-tab-name='home' title='首页'>
 				<svg xmlns='http://www.w3.org/2000/svg' height='28px' viewBox='0 0 24 24' width='28px' fill='currentColor'>
 					<path d='M0 0h24v24H0V0z' fill='none' />
 					<path d='M12 5.69l5 4.5V18h-2v-6H9v6H7v-7.81l5-4.5M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z' />
 				</svg>
-				<span>Home</span>
+				<span>首页</span>
 			</button>
-			<button id='favorites-tab-btn' class='sidebar-tab-btn' data-tab-name='favorites' title='Favorites'>
+			<button id='favorites-tab-btn' class='sidebar-tab-btn' data-tab-name='favorites' title='收藏'>
 				<svg xmlns='http://www.w3.org/2000/svg' height='28px' viewBox='0 0 24 24' width='28px' fill='currentColor'>
 					<path d='M0 0h24v24H0V0z' fill='none' />
 					<path
 						d='M12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72 3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18-1.1 4.72c-.2.86.73 1.54 1.49 1.08l4.15-2.51z' />
 				</svg>
-				<span>Favorites</span>
+				<span>收藏</span>
 			</button>
-			<button id="archive-tab-btn" class="sidebar-tab-btn" data-tab-name="archive" title="Archive">
+			<button id="archive-tab-btn" class="sidebar-tab-btn" data-tab-name="archive" title="归档">
 				<svg xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 0 24 24" width="28px" fill="currentColor"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M20.54 5.23l-1.39-1.68C18.88 3.21 18.47 3 18 3H6c-.47 0-.88.21-1.16.55L3.46 5.23C3.17 5.57 3 6.02 3 6.5V19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6.5c0-.48-.17-.93-.46-1.27zM6.24 5h11.52l.83 1H5.41l.83-1zM5 19V8h14v11H5zm11-5.5l-4 4-4-4 1.41-1.41L11 13.67V10h2v3.67l1.59-1.58L16 13.5z"/></svg>
-				<span>Archive</span>
+				<span>归档</span>
 			</button>
-			<button id="attachments-tab-btn" class="sidebar-tab-btn" data-tab-name="attachments" title="Attachments">
+			<button id="attachments-tab-btn" class="sidebar-tab-btn" data-tab-name="attachments" title="附件">
 				<svg xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 0 24 24" width="28px" fill="currentColor"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M16.5 6v11.5c0 2.21-1.79 4-4 4s-4-1.79-4-4V5c0-1.38 1.12-2.5 2.5-2.5s2.5 1.12 2.5 2.5v10.5c0 .55-.45 1-1 1s-1-.45-1-1V6H10v9.5c0 1.38 1.12 2.5 2.5 2.5s2.5-1.12 2.5-2.5V5c0-2.21-1.79-4-4-4S7 2.79 7 5v12.5c0 3.04 2.46 5.5 5.5 5.5s5.5-2.46 5.5-5.5V6h-1.5z"/></svg>
-				<span>Files</span>
+				<span>附件</span>
 			</button>
-			<a href="/docs" target="_blank" class="sidebar-tab-btn" title="Open Docs">
+			<a href="/docs" target="_blank" class="sidebar-tab-btn" title="打开文档">
 				<svg xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 0 24 24" width="28px" fill="currentColor"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
-				<span>Docs</span>
+				<span>文档</span>
 			</a>
 		</div>
 	</aside>
@@ -3332,7 +3332,7 @@
 	<div class='custom-color-picker'>
 		<label for='color-picker-input' class='color-picker-label' id='color-picker-label'>
 			<div id='color-picker-preview' class='color-picker-preview'></div>
-			<span>Custom</span>
+			<span>自定义</span>
 		</label>
 		<input type='color' id='color-picker-input' class='hidden-color-input'>
 
@@ -3343,13 +3343,13 @@
 </div>
 
 <div id='note-popover-menu' class='popover-menu'>
-	<button class='icon-btn' data-action='favorite' title='Favorite'>
+	<button class='icon-btn' data-action='favorite' title='收藏'>
 		<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'>
 			<path d='M0 0h24v24H0V0z' fill='none' />
 			<path d='M12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72 3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18-1.1 4.72c-.2.86.73 1.54 1.49 1.08l4.15-2.51z' />
 		</svg>
 	</button>
-	<button class='icon-btn' data-action='pin' title='Pin'>
+	<button class='icon-btn' data-action='pin' title='置顶'>
 		<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' stroke-width='2' stroke='currentColor' fill='none' stroke-linecap='round' stroke-linejoin='round'>
 			<path stroke='none' d='M0 0h24v24H0z' fill='none'></path>
 			<path d='M9 4v6l-2 4v2h10v-2l-2 -4v-6'></path>
@@ -3357,13 +3357,13 @@
 			<line x1='8' y1='4' x2='16' y2='4'></line>
 		</svg>
 	</button>
-	<button class='icon-btn' data-action='archive' title='Archive'>
+	<button class='icon-btn' data-action='archive' title='归档'>
 		<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M20.54 5.23l-1.39-1.68C18.88 3.21 18.47 3 18 3H6c-.47 0-.88.21-1.16.55L3.46 5.23C3.17 5.57 3 6.02 3 6.5V19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6.5c0-.48-.17-.93-.46-1.27zM12 17.5L8 13.5l1.41-1.41L11 13.67V10h2v3.67l1.59-1.58L16 13.5l-4 4zM5.12 5l.83-1h12.1l.83 1H5.12z"/></svg>
 	</button>
-	<button class='icon-btn' data-action='share' title='Share'>
+	<button class='icon-btn' data-action='share' title='分享'>
 		<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.66 1.34 3 3 3s3-1.34 3-3-1.34-3-3-3z"/></svg>
 	</button>
-	<button class='icon-btn btn-danger' data-action='delete' title='Delete Note'>
+	<button class='icon-btn btn-danger' data-action='delete' title='删除笔记'>
 		<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'>
 			<path d='M0 0h24v24H0V0z' fill='none' />
 			<path d='M16 9v10H8V9h8m-1.5-6h-5l-1 1H5v2h14V4h-3.5l-1-1zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7z' />
@@ -3375,15 +3375,15 @@
 	<!-- Alert Box -->
 	<div id='custom-alert-box' class='custom-modal-box'>
 		<p id='custom-alert-message'></p>
-		<button id='custom-alert-ok-btn' class='btn'>OK</button>
+		<button id='custom-alert-ok-btn' class='btn'>确定</button>
 	</div>
 
 	<!-- Confirm Box -->
 	<div id='custom-confirm-box' class='custom-modal-box'>
 		<p id='custom-confirm-message'></p>
 		<div class='custom-modal-actions'>
-			<button id='custom-confirm-cancel-btn' class='btn btn-secondary'>Cancel</button>
-			<button id='custom-confirm-ok-btn' class='btn btn-danger'>Delete</button>
+			<button id='custom-confirm-cancel-btn' class='btn btn-secondary'>取消</button>
+			<button id='custom-confirm-ok-btn' class='btn btn-danger'>删除</button>
 		</div>
 	</div>
 
@@ -3393,12 +3393,12 @@
 		<div style="margin: 1rem 0; text-align: left; font-size: 0.9rem;">
 			<label style="cursor: pointer; display: flex; align-items: center; justify-content: center;">
 				<input type="checkbox" id="merge-add-separator" checked style="margin-right: 0.5rem;">
-				Add separator line (---) between notes
+				在笔记之间添加分隔线 (---)
 			</label>
 		</div>
 		<div class='custom-modal-actions'>
-			<button id='merge-confirm-cancel-btn' class='btn btn-secondary'>Cancel</button>
-			<button id='merge-confirm-ok-btn' class='btn btn-primary'>Merge</button>
+			<button id='merge-confirm-cancel-btn' class='btn btn-secondary'>取消</button>
+			<button id='merge-confirm-ok-btn' class='btn btn-primary'>合并</button>
 		</div>
 	</div>
 </div>
@@ -3419,8 +3419,8 @@
 	<div id='fullscreen-editor-box' class='custom-modal-box'>
 		<header id='editor-toolbar'>
 			<div class='toolbar-left'>
-				<select id='fs-fontsize-selector' class='toolbar-selector toolbar-btn' title='Font Size'>
-					<option value=''>Size</option>
+				<select id='fs-fontsize-selector' class='toolbar-selector toolbar-btn' title='字体大小'>
+					<option value=''>大小</option>
 					<option style='font-size: 12px;' value='12px'>12</option>
 					<option style='font-size: 14px;' value='14px'>14</option>
 					<option style='font-size: 16px;' value='16px'>16</option>
@@ -3432,7 +3432,7 @@
 				</select>
 
 				<div id='fs-color-picker-wrapper' style='position: relative;'>
-					<button id='fs-fontcolor-btn' class='toolbar-btn' title='Font Color'>
+					<button id='fs-fontcolor-btn' class='toolbar-btn' title='字体颜色'>
 							<span
 								style='display: inline-block; width: 1em; height: 1em; border: 1px solid transparent; background-color: var(--fs-editor-color, #333); border-radius: 3px; vertical-align: middle;'></span>
 					</button>
@@ -3441,33 +3441,33 @@
 						</div>
 					</div>
 				</div>
-				<button class='toolbar-btn' data-md='bold' title='Bold (Ctrl+B)'><b>B</b></button>
-				<button class="toolbar-btn" data-md="underline" title="Underline"><u>U</u></button>
-				<button class='toolbar-btn' data-md='italic' title='Italic (Ctrl+I)'><i>I</i></button>
-				<button class='toolbar-btn' data-md='strike' title='Strikethrough'><s>S</s></button>
-				<button class='toolbar-btn' data-md='link' title='Insert Link (Ctrl+K)'>Link</button>
-				<button class='toolbar-btn' data-md='image' title='Insert Image'>Img</button>
-				<button class='toolbar-btn' data-md='blockquote' title='Blockquote'>>_</button>
-				<button class="toolbar-btn" data-md="ulist" title="Unordered List">
+				<button class='toolbar-btn' data-md='bold' title='粗体 (Ctrl+B)'><b>B</b></button>
+				<button class="toolbar-btn" data-md="underline" title="下划线"><u>U</u></button>
+				<button class='toolbar-btn' data-md='italic' title='斜体 (Ctrl+I)'><i>I</i></button>
+				<button class='toolbar-btn' data-md='strike' title='删除线'><s>S</s></button>
+				<button class='toolbar-btn' data-md='link' title='插入链接 (Ctrl+K)'>链接</button>
+				<button class='toolbar-btn' data-md='image' title='插入图片'>图片</button>
+				<button class='toolbar-btn' data-md='blockquote' title='引用'>>_</button>
+				<button class="toolbar-btn" data-md="ulist" title="无序列表">
 					<svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px" fill="currentColor">
 						<path d="M0 0h24v24H0V0z" fill="none"/>
 						<path d="M4 10.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm0-6c-.83 0-1.5.67-1.5 1.5S3.17 7.5 4 7.5 5.5 6.83 5.5 6s-.67-1.5-1.5-1.5zm0 12c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zM7 19h14v-2H7v2zm0-6h14v-2H7v2zm0-8v2h14V5H7z"/>
 					</svg>
 				</button>
-				<button class='toolbar-btn' data-md='code' title='Insert Code Block'>Code</button>
+				<button class='toolbar-btn' data-md='code' title='插入代码块'>代码</button>
 			</div>
 			<div class='toolbar-right'>
-				<label class="timestamp-toggle-label" id="fs-timestamp-label" title="If unchecked, the note's timestamp will be updated upon saving.">
+				<label class="timestamp-toggle-label" id="fs-timestamp-label" title="如果取消勾选，保存时笔记的时间戳将被更新。">
 					<input type="checkbox" id="fs-update-timestamp-toggle">
-					<span>Keep Time</span>
+					<span>保持时间</span>
 				</label>
-				<button id='view-mode-split-btn' class='icon-btn' title='Split View'>
+				<button id='view-mode-split-btn' class='icon-btn' title='分栏视图'>
 					<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'>
 						<path d='M0 0h24v24H0V0z' fill='none' />
 						<path d='M3 15h8v-2H3v2zm0 4h8v-2H3v2zm0-8h8V9H3v2zm0-6v2h8V5H3zm10 0h8v14h-8V5z' />
 					</svg>
 				</button>
-				<button id='view-mode-preview-btn' class='icon-btn' title='Preview'>
+				<button id='view-mode-preview-btn' class='icon-btn' title='预览'>
 					<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' stroke-width='2'
 							 stroke='currentColor' fill='none' stroke-linecap='round' stroke-linejoin='round'>
 						<path stroke='none' d='M0 0h24v24H0z' fill='none' />
@@ -3476,8 +3476,8 @@
 					</svg>
 				</button>
 
-				<button id='fs-save-btn' class='btn btn-primary'>Save</button>
-				<button id='fs-cancel-btn' class='btn btn-secondary'>Cancel</button>
+				<button id='fs-save-btn' class='btn btn-primary'>保存</button>
+				<button id='fs-cancel-btn' class='btn btn-secondary'>取消</button>
 			</div>
 		</header>
 		<div id='editor-content-area'>
@@ -3490,7 +3490,7 @@
 </div>
 
 <!-- 返回顶部 -->
-<button id='back-to-top-btn' title='Back to top'>
+<button id='back-to-top-btn' title='返回顶部'>
 	<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='#FFFFFF'>
 		<path d='M0 0h24v24H0V0z' fill='none' />
 		<path d='M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z' />
@@ -3501,108 +3501,108 @@
 <div id='settings-modal-overlay' class='custom-modal-overlay'>
 	<div id='settings-modal-box' class='custom-modal-box'>
 		<header class='settings-header'>
-			<h3>Settings</h3>
+			<h3>设置</h3>
 			<button id='close-settings-btn' class='icon-btn'>&times;</button>
 		</header>
 		<div class='settings-content'>
 			<div class='setting-group'>
-				<h4>Interface Visibility</h4>
+				<h4>界面可见性</h4>
 				<div class='setting-item'>
-					<label for='toggle-search-bar'>Show Search</label>
+					<label for='toggle-search-bar'>显示搜索</label>
 					<input type='checkbox' id='toggle-search-bar' class='toggle-switch'>
 				</div>
 				<div class='setting-item'>
-					<label for='toggle-stats-card'>Show Stats</label>
+					<label for='toggle-stats-card'>显示统计</label>
 					<input type='checkbox' id='toggle-stats-card' class='toggle-switch'>
 				</div>
 				<div class='setting-item'>
-					<label for='toggle-calendar'>Show Calendar</label>
+					<label for='toggle-calendar'>显示日历</label>
 					<input type='checkbox' id='toggle-calendar' class='toggle-switch'>
 				</div>
 				<div class='setting-item'>
-					<label for='toggle-heatmap'>Show Heatmap</label>
+					<label for='toggle-heatmap'>显示热力图</label>
 					<input type='checkbox' id='toggle-heatmap' class='toggle-switch'>
 				</div>
 				<div class='setting-item'>
-					<label for='toggle-tags'>Show Tags</label>
+					<label for='toggle-tags'>显示标签</label>
 					<input type='checkbox' id='toggle-tags' class='toggle-switch'>
 				</div>
 				<div class='setting-item'>
-					<label for='toggle-timeline'>Show Timeline</label>
+					<label for='toggle-timeline'>显示时间线</label>
 					<input type='checkbox' id='toggle-timeline' class='toggle-switch'>
 				</div>
 				<div class='setting-item'>
-					<label for='toggle-right-sidebar'>Show Right Sidebar</label>
+					<label for='toggle-right-sidebar'>显示右侧边栏</label>
 					<input type='checkbox' id='toggle-right-sidebar' class='toggle-switch'>
 				</div>
 				<div class='setting-item'>
-					<label for='toggle-date-grouping'>Enable Date Grouping</label>
+					<label for='toggle-date-grouping'>启用日期分组</label>
 					<input type='checkbox' id='toggle-date-grouping' class='toggle-switch'>
 				</div>
 				<div class='setting-item'>
-					<label for='toggle-content-truncation'>Enable Content Truncation</label>
+					<label for='toggle-content-truncation'>启用内容截断</label>
 					<input type='checkbox' id='toggle-content-truncation' class='toggle-switch'>
 				</div>
 			</div>
 
 
 			<div class='setting-group'>
-				<h4>Feature Visibility</h4>
+				<h4>功能可见性</h4>
 				<div class='setting-item'>
-					<label for='toggle-feature-favorites'>Show Favorites</label>
+					<label for='toggle-feature-favorites'>显示收藏</label>
 					<input type='checkbox' id='toggle-feature-favorites' class='toggle-switch'>
 				</div>
 				<div class='setting-item'>
-					<label for='toggle-feature-archive'>Show Archive</label>
+					<label for='toggle-feature-archive'>显示归档</label>
 					<input type='checkbox' id='toggle-feature-archive' class='toggle-switch'>
 				</div>
 				<div class='setting-item'>
-					<label for='toggle-feature-pinning'>Enable Pinning</label>
+					<label for='toggle-feature-pinning'>启用置顶</label>
 					<input type='checkbox' id='toggle-feature-pinning' class='toggle-switch'>
 				</div>
 				<div class='setting-item'>
-					<label for='toggle-feature-sharing'>Enable Sharing</label>
+					<label for='toggle-feature-sharing'>启用分享</label>
 					<input type='checkbox' id='toggle-feature-sharing' class='toggle-switch'>
 				</div>
 				<div class='setting-item'>
-					<label for='toggle-feature-docs'>Show Docs Link</label>
+					<label for='toggle-feature-docs'>显示文档链接</label>
 					<input type='checkbox' id='toggle-feature-docs' class='toggle-switch'>
 				</div>
 			</div>
 
 			<div class='setting-group'>
-				<h4>Background</h4>
+				<h4>背景</h4>
 				<div class='setting-item'>
-					<label for='bg-image-url'>Image URL</label>
-					<input type='text' id='bg-image-url' placeholder='Enter image URL...'>
+					<label for='bg-image-url'>图片地址</label>
+					<input type='text' id='bg-image-url' placeholder='输入图片地址...'>
 				</div>
 				<div class='setting-item'>
-					<label for='bg-image-upload'>Or Upload</label>
+					<label for='bg-image-upload'>或上传</label>
 					<input type='file' id='bg-image-upload' accept='image/*'>
 				</div>
 				<div class='setting-item'>
-					<label for='bg-blur-slider'>Glass Effect</label>
+					<label for='bg-blur-slider'>玻璃效果</label>
 					<input type='range' id='bg-blur-slider' min='0' max='20' value='0'>
 				</div>
 				<div class='setting-item'>
-					<label for='bg-opacity-slider'>Background Opacity</label>
+					<label for='bg-opacity-slider'>背景透明度</label>
 					<input type='range' id='bg-opacity-slider' min='0' max='1' step='0.05' value='1'>
 				</div>
 				<div class='setting-item'>
 					<label></label>
 					<div class='setting-buttons-group'>
-						<button id='restore-bg-btn' class='btn btn-secondary btn-sm'>Restore</button>
-						<button id='clear-bg-btn' class='btn btn-secondary btn-sm'>Clear</button>
+						<button id='restore-bg-btn' class='btn btn-secondary btn-sm'>恢复</button>
+						<button id='clear-bg-btn' class='btn btn-secondary btn-sm'>清除</button>
 					</div>
 				</div>
 			</div>
 
 			<div class='setting-group'>
-				<h4>Surface</h4>
+				<h4>表面</h4>
 				<div class='setting-item'>
-					<label for='surface-color-picker-input'>Base Color</label>
+					<label for='surface-color-picker-input'>基础颜色</label>
 					<div style="display: flex; align-items: center; gap: 0.75rem; position: relative;">
-						<label for='surface-color-picker-input' class='color-picker-label' id='surface-color-picker-label' title="Click to open color picker" style="cursor: pointer;">
+						<label for='surface-color-picker-input' class='color-picker-label' id='surface-color-picker-label' title="点击打开颜色选择器" style="cursor: pointer;">
 							<div id='surface-color-picker-preview' class='color-picker-preview'></div>
 						</label>
 						<input type='color' id='surface-color-picker-input' class='hidden-color-input'>
@@ -3612,54 +3612,54 @@
 					</div>
 				</div>
 				<div class='setting-item'>
-					<label for='surface-opacity-slider'>Opacity</label>
+					<label for='surface-opacity-slider'>透明度</label>
 					<input type='range' id='surface-opacity-slider' min='0' max='1' step='0.05' value='1'>
 				</div>
 				<div class='setting-item'>
 					<label></label>
 					<div class='setting-buttons-group'>
-						<button id='restore-surface-defaults-btn' class='btn btn-secondary btn-sm'>Restore Defaults</button>
+						<button id='restore-surface-defaults-btn' class='btn btn-secondary btn-sm'>恢复默认</button>
 					</div>
 				</div>
 			</div>
 
 			<div class='setting-group'>
-				<h4>Image Paste Upload</h4>
+				<h4>图片粘贴上传</h4>
 				<div id='image-upload-options'>
 					<div class='setting-item'>
 						<label for='upload-dest-local'>
 							<input type='radio' id='upload-dest-local' name='upload-destination' value='local' checked>
-							Local (via Worker & R2)
+							本地 (通过 Worker & R2)
 						</label>
 					</div>
 					<div class='setting-item'>
 						<label for='upload-dest-imgur'>
 							<input type='radio' id='upload-dest-imgur' name='upload-destination' value='imgur'>
-							Imgur (Requires Client ID)
+							Imgur（需要客户端 ID）
 						</label>
 					</div>
 				</div>
 				<div class='setting-item' id='imgur-client-id-wrapper' style='display: flex;'>
-					<label for='imgur-client-id'>Imgur Client ID</label>
-					<input type='text' id='imgur-client-id' placeholder='Enter your Imgur Client ID...'>
+					<label for='imgur-client-id'>Imgur 客户端 ID</label>
+					<input type='text' id='imgur-client-id' placeholder='请输入你的 Imgur 客户端 ID...'>
 				</div>
 			</div>
 			<div class='setting-group'>
-				<h4>Telegram Proxy</h4>
+				<h4>Telegram 代理</h4>
 				<div class='setting-item'>
-					<label for='toggle-telegram-proxy'>Enable Video&File Proxy</label>
+					<label for='toggle-telegram-proxy'>启用视频和文件代理</label>
 					<input type='checkbox' id='toggle-telegram-proxy' class='toggle-switch'>
 				</div>
 			</div>
 
 			<div class='setting-group'>
-				<h4>Waterfall Mode</h4>
+				<h4>瀑布流模式</h4>
 				<div class='setting-item'>
-					<label for='toggle-editor-in-waterfall'>Hide Editor in Waterfall Mode</label>
+					<label for='toggle-editor-in-waterfall'>在瀑布流模式下隐藏编辑器</label>
 					<input type='checkbox' id='toggle-editor-in-waterfall' class='toggle-switch'>
 				</div>
 				<div class='setting-item'>
-					<label for='waterfall-width-slider'>Card Width (px)</label>
+					<label for='waterfall-width-slider'>卡片宽度 (px)</label>
 					<input type='range' id='waterfall-width-slider' min='200' max='600' step='10' value='320'>
 					<span id='waterfall-width-value'>320px</span>
 				</div>
@@ -3675,7 +3675,7 @@
 				d='M12 6.5c3.79 0 7.17 2.13 8.82 5.5-1.65 3.37-5.02 5.5-8.82 5.5S4.83 15.37 3.18 12C4.83 8.63 8.21 6.5 12 6.5m0-2C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5C21.27 7.61 17 4.5 12 4.5zm0 5c1.38 0 2.5 1.12 2.5 2.5s-1.12 2.5-2.5 2.5-2.5-1.12-2.5-2.5 1.12-2.5 2.5-2.5m0-2c-2.48 0-4.5 2.02-4.5 4.5s2.02 4.5 4.5 4.5 4.5-2.02 4.5-4.5-2.02-4.5-4.5-4.5z' />
 		</svg>
 	</button>
-	<button class='icon-btn btn-danger' data-action='delete' title='Delete Note'>
+	<button class='icon-btn btn-danger' data-action='delete' title='删除笔记'>
 		<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'>
 			<path d='M0 0h24v24H0V0z' fill='none' />
 			<path d='M16 9v10H8V9h8m-1.5-6h-5l-1 1H5v2h14V4h-3.5l-1-1zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7z' />
@@ -3690,49 +3690,49 @@
 <!-- Share Link Modal -->
 <div id='share-link-modal-overlay' class='custom-modal-overlay'>
 	<div id='share-link-modal-box' class='custom-modal-box' style="max-width: 600px; text-align: left;">
-		<h3 style="margin-top:0;">Share Memo</h3>
+		<h3 style="margin-top:0;">分享笔记</h3>
 		<div id="share-link-content">
 			<!-- 加载状态 -->
 			<div id="share-link-loader" style="text-align: center; padding: 2rem 0;">
 				<div class="spinner"></div>
-				<p>Generating link...</p>
+				<p>正在生成链接...</p>
 			</div>
 			<!-- 链接内容 -->
 			<div id="share-link-details" style="display: none;">
-				<p>Anyone with these public links can view this memo.</p>
+				<p>任何拥有这些公开链接的人都可以查看此笔记。</p>
 				<div class="share-link-item" style="margin-bottom: 1rem;">
-					<label style="font-weight: 500;">Display Link</label>
+					<label style="font-weight: 500;">显示链接</label>
 					<div style="display: flex; gap: 0.5rem;">
 						<input type="text" id="share-display-link-input" readonly style="width: 100%; padding: 8px; border: 1px solid var(--border-color); border-radius: 4px; background-color: var(--bg-color);">
-						<button id="copy-display-link-btn" class="btn">Copy</button>
+						<button id="copy-display-link-btn" class="btn">复制</button>
 					</div>
 				</div>
 				<div class="share-link-item" style="margin-bottom: 1.5rem;">
-					<label style="font-weight: 500;">Raw Content Link</label>
+					<label style="font-weight: 500;">原始内容链接</label>
 					<div style="display: flex; gap: 0.5rem;">
 						<input type="text" id="share-raw-link-input" readonly style="width: 100%; padding: 8px; border: 1px solid var(--border-color); border-radius: 4px; background-color: var(--bg-color);">
-						<button id="copy-raw-link-btn" class="btn">Copy</button>
+						<button id="copy-raw-link-btn" class="btn">复制</button>
 					</div>
 				</div>
 
 				<div class="share-link-item" style="display: flex; align-items: center; gap: 1rem;">
-					<label for="expiration-select" style="font-weight: 500; flex-shrink: 0;">Expires in:</label>
+					<label for="expiration-select" style="font-weight: 500; flex-shrink: 0;">过期时间：</label>
 					<select id="expiration-select" style="width: 100%; padding: 8px; border: 1px solid var(--border-color); border-radius: 4px; background-color: var(--bg-color); color: var(--text-color);">
-						<option value="3600">1 Hour</option>
-						<option value="14400">4 Hour</option>
-						<option value="43200">12 Hours</option>
-						<option value="86400">1 Day</option>
-						<option value="604800">7 Days</option>
-						<option value="0">Never</option>
+						<option value="3600">1 小时</option>
+						<option value="14400">4 小时</option>
+						<option value="43200">12 小时</option>
+						<option value="86400">1 天</option>
+						<option value="604800">7 天</option>
+						<option value="0">永不过期</option>
 						<option disabled>──────────</option>
-						<option value="revoke">Revoke Now (Expire Immediately)</option>
+						<option value="revoke">立即撤销（立即过期）</option>
 					</select>
 					<span id="expiration-status" style="font-size: 0.8rem; color: var(--text-secondary); width: 80px; text-align: right;"></span>
 				</div>
 			</div>
 		</div>
 		<div class='custom-modal-actions' style="justify-content: flex-end;">
-			<button id='share-link-close-btn' class='btn btn-secondary'>Close</button>
+			<button id='share-link-close-btn' class='btn btn-secondary'>关闭</button>
 		</div>
 	</div>
 </div>
@@ -3768,7 +3768,7 @@
 		};
 
 		const copyButtonHtml = `
-							<button class='copy-code-btn' data-code='${escapeHtml(code)}' title='Copy code'>
+							<button class='copy-code-btn' data-code='${escapeHtml(code)}' title='复制代码'>
 									<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='9' y='9' width='13' height='13' rx='2' ry='2'></rect><path d='M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1'></path></svg>
 							</button>
 					`;
@@ -3830,12 +3830,12 @@
 			const header = document.createElement('div');
 			header.className = 'calendar-header';
 			header.innerHTML = `
-                <button id='calendar-prev' class='calendar-nav-btn' title='Previous month'>◄</button>
-                <span id='calendar-month-year'>${this.currentDate.toLocaleString('en-US', {
+                <button id='calendar-prev' class='calendar-nav-btn' title='上个月'>◄</button>
+                <span id='calendar-month-year'>${this.currentDate.toLocaleString('zh-CN', {
 				month: 'long',
 				year: 'numeric'
 			})}</span>
-                <button id='calendar-next' class='calendar-nav-btn' title='Next month'>►</button>
+                <button id='calendar-next' class='calendar-nav-btn' title='下个月'>►</button>
             `;
 			this.container.appendChild(header);
 			const nextMonthBtn = document.getElementById('calendar-next');
@@ -3846,7 +3846,7 @@
 
 			const grid = document.createElement('div');
 			grid.className = 'calendar-grid';
-			const dayNames = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+			const dayNames = ['日', '一', '二', '三', '四', '五', '六'];
 			dayNames.forEach(name => {
 				const dayNameEl = document.createElement('div');
 				dayNameEl.className = 'calendar-day-name';
@@ -3913,8 +3913,8 @@
 					const dateStr = target.dataset.date;
 					const count = this.dataProvider.get(dateStr) || 0;
 					if (count > 0) {
-						const countText = count === 1 ? '1 note' : `${count} notes`;
-						calendarTooltip.textContent = `${countText} on ${dateStr}`;
+						const countText = `共 ${count} 条笔记`;
+						calendarTooltip.textContent = `${dateStr} · ${countText}`;
 						calendarTooltip.style.display = 'block';
 					}
 				});
@@ -3972,7 +3972,7 @@
 			const file = formData.get('file');
 
 			if (!file || !file.name || file.size === 0) {
-				return jsonResponse({ error: 'A file is required for upload.' }, 400);
+				return jsonResponse({ error: '需要上传文件。' }, 400);
 			}
 
 			const imageId = crypto.randomUUID();
@@ -3983,8 +3983,8 @@
 			const imageUrl = `/api/images/${imageId}`;
 			return jsonResponse({ success: true, url: imageUrl });
 		} catch (e) {
-			console.error('Standalone Image Upload Error:', e.message);
-			return jsonResponse({ error: 'Upload failed', message: e.message }, 500);
+			console.error('独立图片上传错误：', e.message);
+			return jsonResponse({ error: '上传失败', message: e.message }, 500);
 		}
 	}
 
@@ -4009,7 +4009,7 @@
 			body: formData
 		});
 		if (!response.ok) {
-			throw new Error(`Local upload failed: ${await response.text()}`);
+			throw new Error(`本地上传失败：${await response.text()}`);
 		}
 		const result = await response.json();
 		return result.url;
@@ -4018,7 +4018,7 @@
 	async function uploadToImgur(file) {
 		const clientId = settings.imgurClientId;
 		if (!clientId) {
-			throw new Error('Imgur Client ID is not set in settings.');
+			throw new Error('未在设置中配置 Imgur Client ID。');
 		}
 		const formData = new FormData();
 		formData.append('file', file);
@@ -4029,7 +4029,7 @@
 		});
 		if (!response.ok) {
 			const errorResult = await response.json();
-			throw new Error(`Imgur proxy failed: ${errorResult.message || 'Unknown error'}`);
+			throw new Error(`Imgur 代理上传失败：${errorResult.message || '未知错误'}`);
 		}
 		const result = await response.json();
 		return result.url;
@@ -4079,7 +4079,7 @@
 
 	async function handlePastedImage(imageFile, textarea) {
 		const placeholderId = `uploading-${Date.now()}`;
-		const placeholderMarkdown = `![Uploading image... ${placeholderId}]()`;
+		const placeholderMarkdown = `![图片上传中... ${placeholderId}]()`;
 		insertTextAtCursor(textarea, placeholderMarkdown);
 		try {
 			const destination = settings.imageUploadDestination || 'local';
@@ -4097,9 +4097,9 @@
 			textarea.value = textarea.value.replace(placeholderMarkdown, finalMarkdown);
 		} catch (error) {
 			console.error('Image upload failed:', error);
-			const errorMarkdown = `![Upload Failed: ${error.message}]()`;
+			const errorMarkdown = `![上传失败：${error.message}]()`;
 			textarea.value = textarea.value.replace(placeholderMarkdown, errorMarkdown);
-			showCustomAlert(`Image upload failed: ${error.message}`, 'error');
+			showCustomAlert(`图片上传失败：${error.message}`, 'error');
 		} finally {
 			textarea.dispatchEvent(new Event('input', { bubbles: true }));
 		}
@@ -4117,15 +4117,15 @@
 				await navigator.clipboard.writeText(codeToCopy);
 				copyButton.innerHTML = successIcon;
 				copyButton.classList.add('copied');
-				copyButton.title = 'Copied!';
+				copyButton.title = '已复制！';
 				setTimeout(() => {
 					copyButton.innerHTML = originalIcon;
 					copyButton.classList.remove('copied');
-					copyButton.title = 'Copy code';
+					copyButton.title = '复制代码';
 				}, 2000);
 			} catch (err) {
-				console.error('Failed to copy text: ', err);
-				copyButton.title = 'Copy failed!';
+				console.error('复制失败：', err);
+				copyButton.title = '复制失败！';
 			}
 		}
 	});
@@ -4149,10 +4149,10 @@
 	async function loadSettings() {
 		try {
 			const response = await fetch('/api/settings');
-			if (!response.ok) throw new Error('Failed to fetch settings from server');
+			if (!response.ok) throw new Error('从服务器获取设置失败');
 			settings = await response.json();
 		} catch (error) {
-			console.error("Could not load settings:", error);
+			console.error("加载设置失败：", error);
 			// showCustomAlert(`Error loading settings: ${error.message}. Using local defaults.`, 'error');
 		}
 	}
@@ -4165,10 +4165,10 @@
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify(settings)
 			});
-			if (!response.ok) throw new Error('Failed to save settings to server');
+			if (!response.ok) throw new Error('保存设置到服务器失败');
 		} catch (error) {
 			console.error("Could not save settings:", error);
-			showCustomAlert(`Error saving settings: ${error.message}`, 'error');
+			showCustomAlert(`保存设置失败：${error.message}`, 'error');
 		}
 	}
 	// --- 全局应用状态 ---
@@ -4337,21 +4337,21 @@
 		const selectedValue = expirationSelect.value;
 
 		if (selectedValue === 'revoke') {
-			const confirmed = await showCustomConfirm('Are you sure you want to revoke the public links immediately? This action cannot be undone.');
+			const confirmed = await showCustomConfirm('确定要立即撤销公开链接吗？此操作无法撤销。');
 			if (confirmed) {
-				expirationStatus.textContent = 'Revoking...';
+				expirationStatus.textContent = '正在撤销...';
 				expirationSelect.disabled = true;
 				try {
 					const response = await fetch(`/api/notes/${noteId}/share`, { method: 'DELETE' });
 					if (!response.ok) {
 						const err = await response.json();
-						throw new Error(err.error || 'Failed to revoke share link.');
+						throw new Error(err.error || '撤销分享链接失败。');
 					}
 					closeShareModal();
-					showCustomAlert('Sharing has been successfully revoked.', 'info');
+					showCustomAlert('分享已成功撤销。', 'info');
 				} catch (error) {
-					showCustomAlert(`Error: ${error.message}`, 'error');
-					expirationStatus.textContent = 'Error!';
+					showCustomAlert(`错误：${error.message}`, 'error');
+					expirationStatus.textContent = '错误！';
 				} finally {
 					expirationSelect.disabled = false;
 				}
@@ -4364,7 +4364,7 @@
 
 		if (!noteId || !currentPublicId) return;
 
-		expirationStatus.textContent = 'Updating...';
+		expirationStatus.textContent = '正在更新...';
 		expirationSelect.disabled = true;
 
 		try {
@@ -4379,17 +4379,17 @@
 
 			if (!response.ok) {
 				const err = await response.json();
-				throw new Error(err.error || 'Failed to update expiration.');
+				throw new Error(err.error || '更新过期时间失败。');
 			}
 
-			expirationStatus.textContent = 'Updated!';
+			expirationStatus.textContent = '已更新！';
 			setTimeout(() => {
 				expirationStatus.textContent = '';
 			}, 2000);
 
 		} catch (error) {
-			expirationStatus.textContent = 'Error!';
-			showCustomAlert(`Error: ${error.message}`, 'error');
+			expirationStatus.textContent = '错误！';
+			showCustomAlert(`错误：${error.message}`, 'error');
 		} finally {
 			expirationSelect.disabled = false;
 		}
@@ -4414,13 +4414,13 @@
 		try {
 			await navigator.clipboard.writeText(inputElement.value);
 			const originalText = buttonElement.textContent;
-			buttonElement.textContent = 'Copied!';
+			buttonElement.textContent = '已复制！';
 			setTimeout(() => {
 				buttonElement.textContent = originalText;
 			}, 2000);
 		} catch (err) {
-			console.error('Failed to copy text: ', err);
-			showCustomAlert('Failed to copy link.', 'error');
+			console.error('复制失败：', err);
+			showCustomAlert('复制链接失败。', 'error');
 		}
 	}
 
@@ -4446,7 +4446,7 @@
 			// 在归档视图下，只可能显示 "Unarchive"
 			archiveBtn.style.display = settings.showArchive ? '' : 'none'; // 同样要尊重设置
 			archiveBtn.classList.add('unarchive-mode');
-			archiveBtn.title = 'Unarchive';
+			archiveBtn.title = '取消归档';
 			archiveBtn.dataset.action = 'unarchive';
 
 			// 强制隐藏其他不相关的按钮
@@ -4456,7 +4456,7 @@
 			// 在常规视图下（Home, Favorites）
 			archiveBtn.style.display = settings.showArchive ? '' : 'none';
 			archiveBtn.classList.remove('unarchive-mode');
-			archiveBtn.title = 'Archive';
+			archiveBtn.title = '归档';
 			archiveBtn.dataset.action = 'archive';
 
 			// 只有在设置开启时，才显示收藏和置顶按钮
@@ -4467,11 +4467,11 @@
 			if (noteData) {
 				if (settings.showFavorites) {
 					favoriteBtn.classList.toggle('favorited', noteData.is_favorited);
-					favoriteBtn.title = noteData.is_favorited ? 'Unfavorite' : 'Favorite';
+					favoriteBtn.title = noteData.is_favorited ? '取消收藏' : '收藏';
 				}
 				if (settings.enablePinning) {
 					pinBtn.classList.toggle('pinned', noteData.is_pinned);
-					pinBtn.title = noteData.is_pinned ? 'Unpin' : 'Pin';
+					pinBtn.title = noteData.is_pinned ? '取消置顶' : '置顶';
 				}
 			}
 		}
@@ -4520,9 +4520,9 @@
 				formData.append('isFavorited', newFavoriteState.toString());
 				try {
 					const res = await fetch(`/api/notes/${noteId}`, { method: 'PUT', body: formData });
-					if (!res.ok) throw new Error('Failed to update favorite status.');
+					if (!res.ok) throw new Error('更新收藏状态失败。');
 					actionButton.classList.toggle('favorited', newFavoriteState);
-					actionButton.title = newFavoriteState ? 'Unfavorite' : 'Favorite';
+					actionButton.title = newFavoriteState ? '取消收藏' : '收藏';
 					const noteInCache = allNotesCache.find(n => n.id === parseInt(noteId));
 					if (noteInCache) noteInCache.is_favorited = newFavoriteState;
 				} catch (error) {
@@ -4540,9 +4540,9 @@
 				formData.append('isPinned', newPinState.toString());
 				try {
 					const res = await fetch(`/api/notes/${noteId}`, { method: 'PUT', body: formData });
-					if (!res.ok) throw new Error('Failed to update pin status.');
+					if (!res.ok) throw new Error('更新置顶状态失败。');
 					actionButton.classList.toggle('pinned', newPinState);
-					actionButton.title = newPinState ? 'Unpin' : 'Pin';
+					actionButton.title = newPinState ? '取消置顶' : '置顶';
 					const noteInCache = allNotesCache.find(n => n.id === parseInt(noteId));
 					if (noteInCache) noteInCache.is_pinned = newPinState;
 					await refreshNotes();
@@ -4562,7 +4562,7 @@
 
 				try {
 					const res = await fetch(`/api/notes/${noteId}`, { method: 'PUT', body: formData });
-					if (!res.ok) throw new Error(`Failed to ${action} note.`);
+					if (!res.ok) throw new Error(`${isArchiving ? '归档' : '取消归档'}失败。`);
 
 					// 操作成功后，直接从当前视图移除卡片
 					if (noteElement) {
@@ -4604,7 +4604,7 @@
 					const response = await fetch(`/api/notes/${noteId}/share`, { method: 'POST' });
 					if (!response.ok) {
 						const err = await response.json();
-						throw new Error(err.error || 'Failed to generate share link.');
+						throw new Error(err.error || '生成分享链接失败。');
 					}
 					const data = await response.json();
 
@@ -4616,14 +4616,14 @@
 					details.style.display = 'block';
 
 				} catch (error) {
-					showCustomAlert(`Error: ${error.message}`, 'error');
+					showCustomAlert(`错误：${error.message}`, 'error');
 					closeShareModal();
 				}
 				break;
 			}
 			case 'delete': {
 				if (!noteElement) return;
-				const confirmed = await showCustomConfirm('Are you sure you want to delete this note?');
+				const confirmed = await showCustomConfirm('确定要删除这条笔记吗？');
 				if (!confirmed) return;
 				waterfallObserver.unobserve(noteElement);
 				try {
@@ -4744,7 +4744,7 @@
 		attachmentsState.isLoading = true;
 		const loader = document.createElement('div');
 		loader.className = 'loading-indicator';
-		loader.textContent = 'Loading...';
+		loader.textContent = '加载中...';
 		attachmentsContent.appendChild(loader);
 
 		if (isInitialLoad) {
@@ -4757,7 +4757,7 @@
 
 		try {
 			const response = await fetch(`/api/attachments?page=${attachmentsState.currentPage}`);
-			if (!response.ok) throw new Error('Failed to fetch attachments');
+			if (!response.ok) throw new Error('获取附件失败');
 			const data = await response.json();
 			// 追加新数据
 			attachmentsState.allData.push(...data.attachments);
@@ -4768,7 +4768,7 @@
 			attachmentsState.currentPage++;
 		} catch (error) {
 			console.error(error);
-			attachmentsContent.innerHTML = '<p>Failed to load attachments.</p>';
+			attachmentsContent.innerHTML = '<p>加载附件失败。</p>';
 		} finally {
 			attachmentsState.isLoading = false;
 			const existingLoader = attachmentsContent.querySelector('.loading-indicator');
@@ -4790,13 +4790,13 @@
 		});
 
 		if (isInitialLoad && filteredData.length === 0 && !attachmentsState.hasMore) {
-			attachmentsContent.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">No items to display.</p>';
+			attachmentsContent.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">暂无内容</p>';
 			return;
 		}
 
 		const groupedByMonth = attachmentsState.allData.reduce((acc, item) => {
 			const date = new Date(item.timestamp);
-			const monthKey = date.toLocaleString('en-US', { year: 'numeric', month: 'long' });
+			const monthKey = date.toLocaleString('zh-CN', { year: 'numeric', month: 'long' });
 			if (!acc[monthKey]) acc[monthKey] = [];
 			acc[monthKey].push(item);
 			return acc;
@@ -4816,19 +4816,19 @@
 		// 只将新获取的数据项添加到对应的网格中
 		filteredData.forEach(item => {
 			const date = new Date(item.timestamp);
-			const monthKey = date.toLocaleString('en-US', { year: 'numeric', month: 'long' });
+			const monthKey = date.toLocaleString('zh-CN', { year: 'numeric', month: 'long' });
 			const gridEl = document.getElementById(`month-${monthKey.replace(/\s/g, '-')}`).querySelector('.attachments-grid');
 			const itemLink = document.createElement('a');
 			itemLink.dataset.noteId = item.noteId;
 			let shareButtonHTML = '', deleteButtonHTML = '';
 			if (item.type === 'file' && item.id) {
 				shareButtonHTML = `
-                <button class="share-file-btn icon-btn" title="Get public link" data-note-id="${item.noteId}" data-file-id="${item.id}">
+                <button class="share-file-btn icon-btn" title="获取公开链接" data-note-id="${item.noteId}" data-file-id="${item.id}">
                     <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 0 24 24" width="18px" fill="currentColor"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.66 1.34 3 3 3s3-1.34 3-3-1.34-3-3-3z"/></svg>
                 </button>
             `;
 				deleteButtonHTML = `
-                <button class="delete-file-btn icon-btn" title="Delete file" data-note-id="${item.noteId}" data-file-id="${item.id}">
+                <button class="delete-file-btn icon-btn" title="删除文件" data-note-id="${item.noteId}" data-file-id="${item.id}">
                     <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 0 24 24" width="18px" fill="currentColor"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M16 9v10H8V9h8m-1.5-6h-5l-1 1H5v2h14V4h-3.5l-1-1zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7z"/></svg>
                 </button>
                 `;
@@ -4837,7 +4837,7 @@
 				itemLink.href = item.url;
 				itemLink.className = 'attachment-item attachment-item-image';
 				itemLink.dataset.previewable = true;
-				itemLink.innerHTML = `<img src="${item.url}" loading="lazy" class="preview" alt="Image from note ${item.noteId}">`;
+				itemLink.innerHTML = `<img src="${item.url}" loading="lazy" class="preview" alt="来自笔记 ${item.noteId} 的图片">`;
 				gridEl.appendChild(itemLink);
 			} else if (item.type === 'video') {
 				const itemContainer = document.createElement('div');
@@ -4908,7 +4908,7 @@
 		} else if (videoContainer) {
 			const videoUrl = videoContainer.dataset.url;
 			const noteId = videoContainer.dataset.noteId;
-			openVideoPreview(videoUrl, `Video from note ${noteId}`);
+			openVideoPreview(videoUrl, `来自笔记 ${noteId} 的视频`);
 		}
 
 		const shareBtn = e.target.closest('.share-file-btn');
@@ -4921,14 +4921,14 @@
 			const originalIcon = shareBtn.innerHTML;
 			const successIcon = `<svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 0 24 24" width="18px" fill="currentColor"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>`;
 
-			shareBtn.disabled = true;
-			shareBtn.innerHTML = '...';
+				shareBtn.disabled = true;
+				shareBtn.innerHTML = '...';
 
 			try {
 				const response = await fetch(`/api/notes/${noteId}/files/${fileId}/share`, { method: 'POST' });
 				if (!response.ok) {
 					const errorData = await response.json();
-					throw new Error(errorData.error || 'Failed to generate link.');
+					throw new Error(errorData.error || '生成链接失败。');
 				}
 				const { url } = await response.json();
 
@@ -4936,17 +4936,17 @@
 
 				shareBtn.innerHTML = successIcon;
 				shareBtn.classList.add('copied');
-				shareBtn.title = 'Copied!';
+				shareBtn.title = '已复制！';
 
 				setTimeout(() => {
 					shareBtn.innerHTML = originalIcon;
 					shareBtn.classList.remove('copied');
-					shareBtn.title = 'Get public link';
+					shareBtn.title = '获取公开链接';
 					shareBtn.disabled = false;
 				}, 2000);
 
 			} catch (error) {
-				showCustomAlert(`Error: ${error.message}`, 'error');
+				showCustomAlert(`错误：${error.message}`, 'error');
 				shareBtn.innerHTML = originalIcon;
 				shareBtn.disabled = false;
 			}
@@ -4960,7 +4960,7 @@
 			const noteId = deleteBtn.dataset.noteId;
 			const fileId = deleteBtn.dataset.fileId;
 
-			const confirmed = await showCustomConfirm('Are you sure you want to permanently delete this file? This action cannot be undone.');
+			const confirmed = await showCustomConfirm('确定要永久删除此文件吗？此操作无法撤销。');
 			if (!confirmed) return;
 
 			const attachmentItem = deleteBtn.closest('.attachment-item');
@@ -4984,8 +4984,7 @@
 
 				const result = await response.json();
 				if (!response.ok) {
-					const errorData = await response.json();
-					throw new Error(errorData.error || 'Failed to delete file.');
+					throw new Error(result.error || '删除文件失败。');
 				}
 
 				if (result.noteDeleted) {
@@ -4993,18 +4992,18 @@
 					attachmentsContent.querySelectorAll(`.attachment-item a[data-note-id="${noteId}"]`).forEach(el => el.closest('.attachment-item').remove());
 					attachmentsState.allData = attachmentsState.allData.filter(item => item.noteId != noteId);
 					allNotesCache = allNotesCache.filter(n => n.id !== parseInt(noteId));
-					showToast('File and empty note removed.', 'info');
+					showToast('文件已删除，空笔记已一并移除。', 'info');
 				} else {
 					attachmentItem.remove();
 					attachmentsState.allData = attachmentsState.allData.filter(item => !(item.noteId == noteId && item.id == fileId));
 					if (originalNote) {
 						originalNote.files = originalNote.files.filter(f => f.id !== fileId);
 					}
-					showToast('File deleted successfully.');
+					showToast('文件已删除。');
 				}
 
 			} catch (error) {
-				showCustomAlert(`Error: ${error.message}`, 'error');
+				showCustomAlert(`错误：${error.message}`, 'error');
 				attachmentItem.style.opacity = '1';
 				deleteBtn.disabled = false;
 			}
@@ -5163,7 +5162,7 @@
 				// 处理加载更多的UI
 				if (!data.hasMore) {
 					if (allNotesCache.length > 0) {
-						scrollLoader.textContent = 'No more notes.';
+						scrollLoader.textContent = '没有更多笔记了。';
 						scrollLoader.style.display = 'block';
 					} else {
 						notesContainer.innerHTML = '<div style="text-align: center; color: var(--text-secondary); padding: 1rem 0;">Nothing here yet.</div>';
@@ -5175,11 +5174,11 @@
 				showLoginScreen();
 			} else {
 				// 处理其他网络或服务器错误
-				throw new Error(`Server check failed with status: ${response.status}`);
+				throw new Error(`服务器检查失败，状态码：${response.status}`);
 			}
 		} catch (error) {
 			console.error('Initialization failed:', error);
-			document.body.innerHTML = 'Failed to initialize the application. Please check your connection and try again.';
+			document.body.innerHTML = '应用初始化失败。请检查您的网络连接并重试。';
 		} finally {
 			document.body.classList.remove('loading');
 			const initialLoader = document.getElementById('initial-loader');
@@ -5786,7 +5785,7 @@
 
 			case 'delete': {
 				if (!noteElement) return;
-				const confirmed = await showCustomConfirm('Are you sure you want to delete this note?');
+				const confirmed = await showCustomConfirm('确定要删除这条笔记吗？');
 				if (!confirmed) return;
 
 				// 复用现有的删除逻辑
@@ -5894,7 +5893,7 @@
 	async function loadAndRenderStats() {
 		try {
 			const response = await fetch('/api/stats');
-			if (!response.ok) throw new Error('Failed to fetch stats');
+			if (!response.ok) throw new Error('获取统计数据失败');
 			const stats = await response.json();
 
 			// 计算天数
@@ -5914,7 +5913,7 @@
 			statsMemos.textContent = stats.memos;
 			statsTags.textContent = stats.tags;
 		} catch (error) {
-			console.error('Error loading stats:', error);
+			console.error('加载统计失败：', error);
 			statsDays.textContent = '0';
 			statsMemos.textContent = '0';
 			statsTags.textContent = '0';
@@ -5987,7 +5986,7 @@
 			initializeHeatmapDragToScroll();
 
 		} catch (error) {
-			console.error('Error loading heatmap:', error);
+			console.error('加载热力图失败：', error);
 			heatmapContainerWrapper.innerHTML = '<p style="font-size: 0.8rem; color: var(--text-secondary);">Could not load activity data.</p>';
 		}
 	}
@@ -6350,17 +6349,17 @@
 	fsSaveBtn.addEventListener('click', async () => {
 		const content = fsEditorTextarea.value;
 		fsSaveBtn.disabled = true;
-		fsSaveBtn.textContent = 'Saving...';
+		fsSaveBtn.textContent = '保存中...';
 
 		try {
 			if (currentEditingNoteId === null) {
 				const content = fsEditorTextarea.value;
 				// 檢查內容和文件是否都為空
 				if (!content.trim() && noteFile.files.length === 0) {
-					showCustomAlert('Content or a file is required.', 'error');
+					showCustomAlert('请输入内容或选择文件。', 'error');
 					// 恢復按鈕狀態
 					fsSaveBtn.disabled = false;
-					fsSaveBtn.textContent = 'Save';
+					fsSaveBtn.textContent = '保存';
 					return; // 提前返回
 				}
 
@@ -6374,7 +6373,7 @@
 
 				try {
 					const res = await fetch('/api/notes', { method: 'POST', body: formData });
-					if (!res.ok) throw new Error(`Save failed: ${await res.text()}`);
+					if (!res.ok) throw new Error(`保存失败：${await res.text()}`);
 
 					noteForm.reset(); // 使用 reset() 可以同時清空文本和文件輸入
 					updateMainFileDisplay(); // 更新主界面的文件列表顯示
@@ -6385,23 +6384,23 @@
 					showCustomAlert(error.message, 'error');
 				} finally {
 					fsSaveBtn.disabled = false;
-					fsSaveBtn.textContent = 'Save';
+					fsSaveBtn.textContent = '保存';
 				}
 
 			} else { // 编辑现有笔记
 				const noteElement = notesContainer.querySelector(`.note[data-id="${currentEditingNoteId}"]`);
 				if (!noteElement) {
-					showCustomAlert('Error: Original note element not found.', 'error');
+					showCustomAlert('错误：未找到要编辑的原始笔记元素。', 'error');
 					return;
 				}
 
 				fsSaveBtn.disabled = true;
-				fsSaveBtn.textContent = 'Saving...';
+				fsSaveBtn.textContent = '保存中...';
 				const formData = new FormData();
 				// 1. 添加从全屏编辑器获取的新内容
 				formData.append('content', content);
 				const timestampToggle = document.getElementById('fs-update-timestamp-toggle');
-				// 如果勾选了 "Keep Time"，则 shouldUpdate 为 false
+				// 如果勾选了“保持时间”，则 shouldUpdate 为 false
 				const shouldUpdate = !timestampToggle.checked;
 				formData.append('update_timestamp', shouldUpdate.toString());
 
@@ -6417,7 +6416,7 @@
 
 				try {
 					const res = await fetch(`/api/notes/${currentEditingNoteId}`, { method: 'PUT', body: formData });
-					if (!res.ok) throw new Error(`Update failed: ${await res.text()}`);
+					if (!res.ok) throw new Error(`更新失败：${await res.text()}`);
 
 					closeFullscreenEditor();
 					await refreshNotes(); // 刷新列表以显示最新内容
@@ -6425,14 +6424,14 @@
 					showCustomAlert(error.message, 'error');
 				} finally {
 					fsSaveBtn.disabled = false;
-					fsSaveBtn.textContent = 'Save';
+					fsSaveBtn.textContent = '保存';
 				}
 			}
 		} catch (error) {
 			showCustomAlert(error.message, 'error');
 		} finally {
 			fsSaveBtn.disabled = false;
-			fsSaveBtn.textContent = 'Save';
+			fsSaveBtn.textContent = '保存';
 		}
 	});
 
@@ -6446,9 +6445,9 @@
 		const sunIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">' +
 			'<path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l1.06 1.06c.39.39 1.02.39 1.41 0s.39-1.02 0-1.41L5.99 4.58zm12.02 12.02c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l1.06 1.06c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41l-1.06-1.06zM20 6.01c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.02 0 1.41s1.02.39 1.41 0l1.06-1.06zM7.05 18.01c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.02 0 1.41s1.02.39 1.41 0l1.06-1.06z">' +
 			'</path>' +
-			'</svg><span>Light Mode</span>';
+			'</svg><span>浅色模式</span>';
 		const moonIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M10 2c-1.82 0-3.53.5-5 1.35C7.99 5.08 10 8.3 10 12s-2.01 6.92-5 8.65C6.47 21.5 8.18 22 10 22c5.52 0 10-4.48 10-10S15.52 2 10 2z">' +
-			'</path></svg><span>Dark Mode</span>';
+			'</path></svg><span>深色模式</span>';
 		themeToggleBtn.innerHTML = theme === 'dark' ? sunIcon : moonIcon;
 		document.getElementById('hljs-light-theme').disabled = (theme === 'dark');
 		document.getElementById('hljs-dark-theme').disabled = (theme !== 'dark');
@@ -6703,7 +6702,7 @@
 		const targetId = targetElement.dataset.id;
 
 		const result = await showMergeConfirm(
-			`This will merge Note #${sourceId} and Note #${targetId}. The older note will be merged into the newer one and then deleted.`
+			`将合并笔记 #${sourceId} 和 #${targetId}：较早的笔记会合并到较新的笔记中，并随后被删除。`
 		);
 
 		if (!result.confirmed) return;
@@ -6721,16 +6720,16 @@
 
 			if (!response.ok) {
 				const err = await response.json();
-				throw new Error(err.error || 'Merge failed.');
+				throw new Error(err.error || '合并失败。');
 			}
 
 			const updatedMergedNote = await response.json();
 
-			showToast('Notes merged successfully!');
+			showToast('笔记合并成功！');
 			await refreshNotes();
 
 		} catch (error) {
-			showToast(`Error: ${error.message}`, 'error');
+			showToast(`错误：${error.message}`, 'error');
 		}
 	}
 	// END: 笔记拖拽合并
@@ -7137,7 +7136,7 @@
 		if (filteredTags.length === 0) {
 			const li = document.createElement('li');
 			li.className = 'no-results';
-			li.textContent = filter ? 'No tags found' : 'No tags yet';
+			li.textContent = filter ? '未找到匹配的标签' : '暂无标签';
 			tagDropdownList.appendChild(li);
 			return;
 		}
@@ -7160,7 +7159,7 @@
 		if (allTagsCache.length === 0) {
 			try {
 				const response = await fetch('/api/tags');
-				if (!response.ok) throw new Error('Failed to fetch tags');
+				if (!response.ok) throw new Error('获取标签失败');
 				allTagsCache = await response.json();
 			} catch (error) {
 				console.error(error);
@@ -7210,7 +7209,7 @@
 		const btn = document.getElementById('login-btn');
 		const err = document.getElementById('login-error');
 		btn.disabled = true;
-		btn.textContent = 'Logging in...';
+		btn.textContent = '登录中...';
 		err.textContent = '';
 		try {
 			const res = await fetch('/api/login', {
@@ -7218,13 +7217,13 @@
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ username: username.value, password: password.value })
 			});
-			if (!res.ok) throw new Error('Invalid username or password.');
+			if (!res.ok) throw new Error('用户名或密码错误。');
 			initializeApp();
 		} catch (error) {
 			err.textContent = error.message;
 		} finally {
 			btn.disabled = false;
-			btn.textContent = 'Login';
+			btn.textContent = '登录';
 		}
 	});
 
@@ -7242,7 +7241,7 @@
 		const isAppending = page > 1;
 		const currentLoader = isAppending ? scrollLoader : refreshLoader;
 		if (isAppending) {
-			currentLoader.textContent = 'Loading more...';
+			currentLoader.textContent = '加载更多...';
 		}
 		currentLoader.style.display = isAppending ? 'block' : 'flex';
 		try {
@@ -7273,7 +7272,7 @@
 				showLoginScreen();
 				return;
 			}
-			if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+			if (!response.ok) throw new Error(`HTTP 错误！状态码：${response.status}`);
 			showAppScreen();
 			const data = await response.json();
 			if (!isAppending) {
@@ -7289,7 +7288,7 @@
 				scrollLoader.style.display = 'none';
 			} else {
 				if (allNotesCache.length > 0) {
-					scrollLoader.textContent = 'No more notes.';
+					scrollLoader.textContent = '没有更多笔记了。';
 					scrollLoader.style.display = 'block';
 				} else {
 					notesContainer.innerHTML = '<div style="text-align: center; color: var(--text-secondary); padding: 1rem 0;">Nothing here yet.</div>';
@@ -7297,7 +7296,7 @@
 				}
 			}
 		} catch (error) {
-			currentLoader.textContent = `Failed to load: ${error.message}`;
+			currentLoader.textContent = `加载失败：${error.message}`;
 		} finally {
 			appState.pagination.isLoading = false;
 			refreshLoader.style.display = 'none';
@@ -7343,7 +7342,7 @@
 		// 	editedIndicatorHtml = ` ·&nbsp;<span class="note-edited-indicator" title="Edited at: ${editedTime.absolute}">edited</span>`;
 		// }
 		const pinnedIconHTML = note.is_pinned ? `
-				<button class='unpin-btn icon-btn pinned' title='Unpin'>
+				<button class='unpin-btn icon-btn pinned' title='取消置顶'>
 						<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' stroke-width='2' stroke='currentColor' fill='currentColor' stroke-linecap='round' stroke-linejoin='round'>
 								<path stroke='none' d='M0 0h24v24H0z' fill='none'></path>
 								<path d='M9 4v6l-2 4v2h10v-2l-2 -4v-6'></path>
@@ -7358,12 +7357,12 @@
 			note.files.forEach(file => {
 				const fileUrl = `/api/files/${noteId}/${file.id}`;
 				const shareButtonHTML = `
-            <button class="share-file-btn icon-btn" title="Get public link" data-note-id="${noteId}" data-file-id="${file.id}">
+            <button class="share-file-btn icon-btn" title="获取公开链接" data-note-id="${noteId}" data-file-id="${file.id}">
                 <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 0 24 24" width="18px" fill="currentColor"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.66 1.34 3 3 3s3-1.34 3-3-1.34-3-3-3z"/></svg>
             </button>
         `;
 				const deleteButtonHTML = `
-						<button class="delete-file-btn icon-btn" title="Delete file" data-note-id="${noteId}" data-file-id="${file.id}">
+						<button class="delete-file-btn icon-btn" title="删除文件" data-note-id="${noteId}" data-file-id="${file.id}">
 							<svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 0 24 24" width="18px" fill="currentColor"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M16 9v10H8V9h8m-1.5-6h-5l-1 1H5v2h14V4h-3.5l-1-1zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7z"/></svg>
 						</button>
 					`;
@@ -7400,10 +7399,10 @@
 									</div>
 											<div class='note-actions view-mode'>
 													${pinnedIconHTML}
-													<button class='edit icon-btn' title='Edit'>
+													<button class='edit icon-btn' title='编辑'>
 															<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'><path d='M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z'></path></svg>
 													</button>
-													<button class='more-actions-btn icon-btn' title='More actions'>
+													<button class='more-actions-btn icon-btn' title='更多操作'>
 															 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
 													</button>
 											</div>
@@ -7411,36 +7410,36 @@
 <!--													<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><path d='M0 0h24v24H0V0z' fill='none'/><path d='M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z'/></svg>-->
 <!--											</button>-->
 											<div class='edit-actions edit-mode'>
-													<label class="timestamp-toggle-label" title="If checked, the note's timestamp will not be updated upon saving.">
+													<label class="timestamp-toggle-label" title="勾选后，保存时不会更新笔记时间戳。">
 															<input type="checkbox" class="update-timestamp-toggle" checked>
-															<span>Keep Time</span>
+															<span>保持时间</span>
 													</label>
-													<label class='icon-btn' title='Add files'>
+													<label class='icon-btn' title='添加文件'>
 															<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'><path d='M16.5 6v11.5c0 2.21-1.79 4-4 4s-4-1.79-4-4V5c0-1.38 1.12-2.5 2.5-2.5s2.5 1.12 2.5 2.5v10.5c0 .55-.45 1-1 1s-1-.45-1-1V6H10v9.5c0 1.38 1.12 2.5 2.5 2.5s2.5-1.12 2.5-2.5V5c0-2.21-1.79-4-4-4S7 2.79 7 5v12.5c0 3.04 2.46 5.5 5.5 5.5s5.5-2.46 5.5-5.5V6h-1.5z'></path></svg>
 															<input type='file' class='edit-file-input' multiple style='display:none;'>
 													</label>
-													<button class='md-preview-toggle-btn icon-btn' title='Toggle Preview'>
+													<button class='md-preview-toggle-btn icon-btn' title='切换预览'>
 															<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' stroke-width='2' stroke='currentColor' fill='none' stroke-linecap='round' stroke-linejoin='round'><path stroke='none' d='M0 0h24v24H0z' fill='none'/><circle cx='12' cy='12' r='2' /><path d='M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7' /></svg>
 													</button>
-													<button class='md-split-toggle-btn icon-btn' title='Toggle Split View' style='display: none;'>
+													<button class='md-split-toggle-btn icon-btn' title='切换分栏视图' style='display: none;'>
 															<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><path d='M0 0h24v24H0V0z' fill='none'></path><path d='M3 15h8v-2H3v2zm0 4h8v-2H3v2zm0-8h8V9H3v2zm0-6v2h8V5H3zm10 0h8v14h-8V5z'></path></svg>
 													</button>
-													<button class='fullscreen-edit icon-btn' title='Fullscreen Edit'>
+													<button class='fullscreen-edit icon-btn' title='全屏编辑'>
 															<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'><path d='M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z'></path></svg>
 													</button>
-													<button class='save-edit icon-btn btn-accent' title='Save'>
+													<button class='save-edit icon-btn btn-accent' title='保存'>
 															<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'><path d='M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z'></path></svg>
 													</button>
-													<button class='cancel-edit icon-btn' title='Cancel'>
+													<button class='cancel-edit icon-btn' title='取消'>
 															<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'><path d='M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z'></path></svg>
 													</button>
 											</div>
 									</div>
 									<div class='note-content view-mode'></div>
 									${attachmentsHTML}
-    							<button class='toggle-content-btn'>Show more</button>
+    							<button class='toggle-content-btn'>展开</button>
 									<div class='edit-area edit-mode'>
-											<textarea class='edit-textarea' placeholder='Memos here...'></textarea>
+											<textarea class='edit-textarea' placeholder='在这里输入...'></textarea>
 											<div class='edit-preview note-content'></div>
 									</div>
 
@@ -7478,7 +7477,7 @@
 				// 为置顶区域添加一个标题/分隔符
 				const pinnedHeader = document.createElement('div');
 				pinnedHeader.className = 'pinned-section-header';
-				pinnedHeader.textContent = 'Pinned';
+				pinnedHeader.textContent = '已置顶';
 				pinnedContainer.appendChild(pinnedHeader);
 
 				// 循环渲染所有置顶笔记
@@ -7823,11 +7822,11 @@
 
 	noteForm.addEventListener('submit', async e => {
 		e.preventDefault();
-		if (!noteInput.value.trim() && noteFile.files.length === 0) return showCustomAlert('Content or a file is required.', 'error');
+		if (!noteInput.value.trim() && noteFile.files.length === 0) return showCustomAlert('请输入内容或选择文件。', 'error');
 
 		const btn = e.target.querySelector('button[type="submit"]');
 		btn.disabled = true;
-		btn.textContent = 'Saving...';
+		btn.textContent = '保存中...';
 
 		const formData = new FormData();
 		formData.append('content', noteInput.value);
@@ -7838,7 +7837,7 @@
 		});
 		try {
 			const res = await fetch('/api/notes', { method: 'POST', body: formData });
-			if (!res.ok) throw new Error(`Save error: ${await res.text()}`);
+			if (!res.ok) throw new Error(`保存失败：${await res.text()}`);
 			noteForm.reset();
 			mainEditPreview.innerHTML = '';
 			noteForm.classList.remove('preview-mode');
@@ -7850,7 +7849,7 @@
 			showCustomAlert(error.message, 'error');
 		} finally {
 			btn.disabled = false;
-			btn.textContent = 'Save';
+			btn.textContent = '保存';
 		}
 	});
 
@@ -7934,9 +7933,9 @@
 			if (noteElement) {
 				noteElement.classList.toggle('is-expanded');
 				if (noteElement.classList.contains('is-expanded')) {
-					target.textContent = 'Collapse';
+					target.textContent = '收起';
 				} else {
-					target.textContent = 'Show more';
+					target.textContent = '展开';
 				}
 			}
 			return;
@@ -7958,7 +7957,7 @@
 				const response = await fetch(`/api/notes/${noteId}/files/${fileId}/share`, { method: 'POST' });
 				if (!response.ok) {
 					const errorData = await response.json();
-					throw new Error(errorData.error || 'Failed to generate link.');
+					throw new Error(errorData.error || '生成链接失败。');
 				}
 				const { url } = await response.json();
 
@@ -7966,17 +7965,17 @@
 
 				shareBtn.innerHTML = successIcon;
 				shareBtn.classList.add('copied');
-				shareBtn.title = 'Copied!';
+				shareBtn.title = '已复制！';
 
 				setTimeout(() => {
 					shareBtn.innerHTML = originalIcon;
 					shareBtn.classList.remove('copied');
-					shareBtn.title = 'Get public link';
+					shareBtn.title = '获取公开链接';
 					shareBtn.disabled = false;
 				}, 2000);
 
 			} catch (error) {
-				showCustomAlert(`Error: ${error.message}`, 'error');
+				showCustomAlert(`错误：${error.message}`, 'error');
 				shareBtn.innerHTML = originalIcon;
 				shareBtn.disabled = false;
 			}
@@ -7991,7 +7990,7 @@
 			const noteId = deleteBtn.dataset.noteId;
 			const fileId = deleteBtn.dataset.fileId;
 
-			const confirmed = await showCustomConfirm('Are you sure you want to permanently delete this file? This action cannot be undone.');
+			const confirmed = await showCustomConfirm('确定要永久删除此文件吗？此操作无法撤销。');
 			if (!confirmed) return;
 
 			const attachmentElement = deleteBtn.closest('.attachment-link, .attachment-img');
@@ -8015,23 +8014,23 @@
 				const result = await response.json();
 
 				if (!response.ok) {
-					throw new Error(result.error || 'Failed to delete file.');
+					throw new Error(result.error || '删除文件失败。');
 				}
 
 				if (result.noteDeleted) {
 					noteElement.remove(); // 直接删除DOM元素
 					allNotesCache = allNotesCache.filter(n => n.id !== parseInt(noteId));
-					showToast('File and empty note removed.', 'info');
+					showToast('文件已删除，空笔记已一并移除。', 'info');
 				} else {
 					attachmentElement.remove();
 					if (currentNote) {
 						currentNote.files = currentNote.files.filter(f => f.id !== fileId);
 					}
-					showToast('File deleted successfully.');
+					showToast('文件已删除。');
 				}
 
 			} catch (error) {
-				showCustomAlert(`Error: ${error.message}`, 'error');
+				showCustomAlert(`错误：${error.message}`, 'error');
 				attachmentElement.style.opacity = '1';
 				deleteBtn.disabled = false;
 			}
@@ -8078,7 +8077,7 @@
 			formData.append('isPinned', 'false');
 			try {
 				const res = await fetch(`/api/notes/${noteId}`, { method: 'PUT', body: formData });
-				if (!res.ok) throw new Error('Failed to unpin note.');
+				if (!res.ok) throw new Error('取消置顶失败。');
 				await refreshNotes();
 			} catch (error) {
 				showCustomAlert(error.message, 'error');
@@ -8204,7 +8203,7 @@
 
 			try {
 				const res = await fetch(`/api/notes/${noteId}`, { method: 'PUT', body: formData });
-				if (!res.ok) throw new Error(`Update failed`);
+				if (!res.ok) throw new Error(`更新失败`);
 				const updatedNote = await res.json();
 				const newNoteElement = createNoteElement(updatedNote);
 				noteElement.replaceWith(newNoteElement);
@@ -8361,7 +8360,7 @@
 			const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 			const apiUrl = `/api/notes/timeline?timezone=${encodeURIComponent(userTimezone)}`;
 			const response = await fetch(apiUrl);
-			if (!response.ok) throw new Error('Failed to fetch timeline');
+			if (!response.ok) throw new Error('获取时间线失败');
 			const timelineData = await response.json();
 			loadAndRenderHeatmap(timelineData);
 
@@ -8403,8 +8402,8 @@
 			timelineContainer.appendChild(rootUl);
 
 		} catch (error) {
-			console.error('Error loading timeline:', error);
-			timelineContainer.innerHTML = '<p>Error loading timeline.</p>';
+			console.error('加载时间线失败：', error);
+			timelineContainer.innerHTML = '<p>时间线加载失败。</p>';
 		}
 	}
 
@@ -8424,7 +8423,7 @@
 		let filterButtonHtml = '';
 		if (isExpandable) {
 			filterButtonHtml = `
-                <button class='timeline-filter-btn' title='Filter notes for ${label}'>
+                <button class='timeline-filter-btn' title='筛选 ${label} 的笔记'>
                     <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M3 4.5h18'/><path d='M3 9.5h18'/><path d='M3 14.5h18'/><path d='M3 19.5h18'/></svg>
                 </button>
             `;
@@ -8524,20 +8523,20 @@
 		const tagsContainer = document.getElementById('tags-container');
 		try {
 			const response = await fetch('/api/tags');
-			if (!response.ok) throw new Error('Failed to fetch tags');
+			if (!response.ok) throw new Error('获取标签失败');
 			const tags = await response.json();
 
 			tagsContainer.innerHTML = '<ul></ul>';
 			const listElement = tagsContainer.querySelector('ul');
 
 			if (tags.length === 0) {
-				listElement.innerHTML = '<li><div class="tag-item-placeholder">No tags yet.</div></li>';
+				listElement.innerHTML = '<li><div class="tag-item-placeholder">暂无标签</div></li>';
 				return;
 			}
 			tags.forEach(tag => {
 				const tagLi = document.createElement('li');
 				tagLi.innerHTML = `
-                    <div class='tag-item' data-tag-name='${tag.name}' title='Filter by tag: #${tag.name}'>
+                    <div class='tag-item' data-tag-name='${tag.name}' title='按标签筛选：#${tag.name}'>
                         <span class='tag-label'>
                             <span class='tag-hash'>#</span>
                             <span class='tag-name'>${tag.name}</span>
@@ -8548,8 +8547,8 @@
 				listElement.appendChild(tagLi);
 			});
 		} catch (error) {
-			console.error('Error loading tags:', error);
-			tagsContainer.innerHTML = '<p>Error loading tags.</p>';
+			console.error('加载标签失败：', error);
+			tagsContainer.innerHTML = '<p>标签加载失败。</p>';
 		}
 	}
 

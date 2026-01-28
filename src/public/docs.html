@@ -250,10 +250,10 @@
 <div class="app-container">
 	<aside id="sidebar-left">
 		<div class="sidebar-header">
-			<h2>Docs</h2>
+			<h2>文档</h2>
 			<div class="sidebar-actions">
-				<button id="new-note-btn" title="Create Doc"><i class="fas fa-file-alt"></i></button>
-				<button id="new-folder-btn" title="Create Folder"><i class="fas fa-folder-plus"></i></button>
+				<button id="new-note-btn" title="创建文档"><i class="fas fa-file-alt"></i></button>
+				<button id="new-folder-btn" title="创建文件夹"><i class="fas fa-folder-plus"></i></button>
 			</div>
 		</div>
 		<div id="file-tree-container"><ul id="file-tree"></ul></div>
@@ -262,21 +262,21 @@
 	<main id="editor-container">
 		<div id="editor"><!-- Quill editor mounts here --></div>
 		<div id="editor-actions">
-			<button id="theme-toggle-btn" class="action-btn" title="Toggle Theme"><i class="fas fa-moon"></i></button>
-			<button id="save-btn" disabled><i class="fas fa-save"></i> Save</button>
-			<a href="/" class="action-btn" title="Back to Home" target="_blank"><i class="fas fa-arrow-up-right-from-square"></i></a>
+			<button id="theme-toggle-btn" class="action-btn" title="切换主题"><i class="fas fa-moon"></i></button>
+			<button id="save-btn" disabled><i class="fas fa-save"></i> 保存</button>
+			<a href="/" class="action-btn" title="返回首页" target="_blank"><i class="fas fa-arrow-up-right-from-square"></i></a>
 		</div>
 	</main>
 	<div class="resizer" id="resizer-right"></div>
 	<aside id="sidebar-right">
-		<div class="sidebar-header"><h2>Outline</h2></div>
+		<div class="sidebar-header"><h2>大纲</h2></div>
 		<div id="outline-container"></div>
 	</aside>
 </div>
 <div id="context-menu">
-	<button id="ctx-rename-btn"><i class="fas fa-edit"></i> Rename</button>
-	<button id="ctx-move-btn" disabled><i class="fas fa-arrows-alt"></i> Move (Drag & Drop)</button>
-	<button id="ctx-delete-btn"><i class="fas fa-trash-alt"></i> Delete</button>
+	<button id="ctx-rename-btn"><i class="fas fa-edit"></i> 重命名</button>
+	<button id="ctx-move-btn" disabled><i class="fas fa-arrows-alt"></i> 移动（拖拽）</button>
+	<button id="ctx-delete-btn"><i class="fas fa-trash-alt"></i> 删除</button>
 </div>
 <div id="editor-loader" class="hidden"><div class="spinner"></div></div>
 
@@ -319,7 +319,7 @@
 		if (!response.ok) {
 			// Try to parse a JSON error message from the backend, otherwise use status text
 			const errorData = await response.json().catch(() => ({ message: response.statusText }));
-			throw new Error(errorData.message || 'An unknown API error occurred');
+			throw new Error(errorData.message || '发生未知的 API 错误');
 		}
 		// For DELETE requests or other successful requests with no content
 		if (response.status === 204) {
@@ -387,14 +387,14 @@
 		try {
 			userSettings = await api.getSettings();
 		} catch (error) {
-			console.error("Failed to load Memos settings, defaulting to local upload:", error);
+			console.error("加载 Memos 设置失败，将回退为本地上传：", error);
 			// 提供一个安全的回退默认值
 			userSettings = { imageUploadDestination: 'local' };
 		}
 
 		async function uploadImage(file) {
 			const destination = userSettings.imageUploadDestination || 'local';
-			console.log(`Uploading image via: ${destination}`);
+			console.log(`图片上传方式：${destination}`);
 
 			try {
 				if (destination === 'local') {
@@ -406,13 +406,13 @@
 						method: 'POST',
 						body: formData,
 					});
-					if (!response.ok) throw new Error(`Local upload failed: ${await response.text()}`);
+					if (!response.ok) throw new Error(`本地上传失败：${await response.text()}`);
 					const result = await response.json();
 					return result.url;
 
 				} else if (destination === 'imgur') {
 					if (!userSettings.imgurClientId) {
-						throw new Error("Imgur Client ID is not configured in Memos settings.");
+						throw new Error("未在设置中配置 Imgur Client ID。");
 					}
 					const formData = new FormData();
 					formData.append('file', file);
@@ -426,15 +426,15 @@
 
 					if (!response.ok) {
 						const errorResult = await response.json();
-						throw new Error(`Imgur proxy failed: ${errorResult.message || 'Unknown error'}`);
+						throw new Error(`Imgur 代理上传失败：${errorResult.message || '未知错误'}`);
 					}
 					const result = await response.json();
 					return result.url;
 				} else {
-					throw new Error(`Unknown upload destination: ${destination}`);
+					throw new Error(`未知的上传目标：${destination}`);
 				}
 			} catch (error) {
-				console.error("Image upload failed:", error);
+				console.error("图片上传失败：", error);
 				throw error; // 将错误重新抛出，以便粘贴处理器可以捕获它
 			}
 		}
@@ -476,7 +476,7 @@
 				headings.push({ level, text, id });
 			});
 			if (headings.length === 0) {
-				outlineContainer.innerHTML = '<p style="text-align: center; color: var(--text-muted-color); font-size: 14px; padding: 20px;">No headings found.</p>';
+				outlineContainer.innerHTML = '<p style="text-align: center; color: var(--text-muted-color); font-size: 14px; padding: 20px;">未找到标题。</p>';
 				return;
 			}
 			const outlineHtml = `<ul>${headings.map(h => `<li class="outline-item outline-item-h${h.level}"><a href="#${h.id}">${h.text}</a></li>`).join('')}</ul>`;
@@ -803,7 +803,7 @@
 			editor.on('text-change', (delta, oldDelta, source) => {
 				if (source === 'user' && activeNoteId && saveBtn.disabled) {
 					saveBtn.disabled = false;
-					saveBtn.innerHTML = "<i class='fas fa-save'></i> Save";
+					saveBtn.innerHTML = "<i class='fas fa-save'></i> 保存";
 				}
 				setTimeout(updateOutline, 300);
 				if (source === 'user') {
@@ -838,7 +838,7 @@
 					if (!range) return;
 
 					// 1. Insert a placeholder
-					const placeholderText = '[Uploading image...]';
+					const placeholderText = '[正在上传图片...]';
 					editor.insertText(range.index, placeholderText, 'user');
 					const placeholderLength = placeholderText.length;
 
@@ -853,9 +853,9 @@
 
 					} catch (error) {
 						// 4. Handle upload failure
-						console.error('Image upload failed:', error);
+						console.error('图片上传失败：', error);
 						editor.deleteText(range.index, placeholderLength, 'user');
-						editor.insertText(range.index, '[Image upload failed]', { 'color': 'red' }, 'user');
+						editor.insertText(range.index, '[图片上传失败]', { 'color': 'red' }, 'user');
 					}
 				}
 			});
@@ -870,7 +870,7 @@
 			await refreshFileTree();
 			const firstFile = flatNodes.find(node => node.type === 'file');
 			if (firstFile) await loadNote(firstFile.id);
-			else { quill.root.innerHTML = '<h1>NO docs</h1><p>Create a new note to get started.</p>'; setEditorEditable(false); }
+			else { quill.root.innerHTML = '<h1>没有文档</h1><p>创建新文档以开始使用。</p>'; setEditorEditable(false); }
 		}
 		async function loadNote(noteId) {
 			if (!noteId || noteId === activeNoteId) return;
@@ -883,7 +883,7 @@
 				quill.root.innerHTML = note.content || '';
 				updateOutline();
 				saveBtn.disabled = true;
-				saveBtn.innerHTML = '<i class=\'fas fa-check\'></i> Saved';
+				saveBtn.innerHTML = '<i class=\'fas fa-check\'></i> 已保存';
 			} catch (error) {
 				quill.root.innerHTML = `<h1>加载失败</h1><p>${error.message}</p>`;
 				activeNoteId = null;
@@ -895,18 +895,18 @@
 			if (!activeNoteId || saveBtn.disabled) return;
 			const content = quill.root.innerHTML;
 			saveBtn.disabled = true;
-			saveBtn.innerHTML = '<i class=\'fas fa-spinner fa-spin\'></i> Saving...';
+			saveBtn.innerHTML = '<i class=\'fas fa-spinner fa-spin\'></i> 保存中...';
 			try {
 				await api.saveNode(activeNoteId, content);
-				saveBtn.innerHTML = '<i class=\'fas fa-check\'></i> Saved';
+				saveBtn.innerHTML = '<i class=\'fas fa-check\'></i> 已保存';
 			} catch (error) {
-				saveBtn.innerHTML = '<i class=\'fas fa-times\'></i> Error';
-				setTimeout(() => { saveBtn.disabled = false; saveBtn.innerHTML = '<i class=\'fas fa-save\'></i> Save'; }, 2000);
+				saveBtn.innerHTML = '<i class=\'fas fa-times\'></i> 错误';
+				setTimeout(() => { saveBtn.disabled = false; saveBtn.innerHTML = '<i class=\'fas fa-save\'></i> 保存'; }, 2000);
 			}
 		}
 		async function handleDelete(nodeId) {
 			const nodeToDelete = flatNodes.find(n => n.id === nodeId);
-			if (!nodeToDelete || !confirm(`delete "${nodeToDelete.title}"?`)) return;
+			if (!nodeToDelete || !confirm(`确定要删除 "${nodeToDelete.title}" 吗？`)) return;
 			await api.deleteNode(nodeId);
 			await refreshFileTree();
 			if (nodeId === activeNoteId) {
@@ -918,7 +918,7 @@
 		async function handleRename(nodeId) {
 			const nodeToRename = flatNodes.find(n => n.id === nodeId);
 			if (!nodeToRename) return;
-			const newTitle = prompt('New name:', nodeToRename.title);
+			const newTitle = prompt('新名称：', nodeToRename.title);
 			if (newTitle && newTitle.trim() && newTitle.trim() !== nodeToRename.title) {
 				await api.renameNode(nodeId, newTitle.trim());
 				await refreshFileTree();
@@ -961,8 +961,8 @@
 			renameBtn.addEventListener('click', () => handleRename(selectedNodeId));
 			deleteBtn.addEventListener('click', () => handleDelete(selectedNodeId));
 			document.addEventListener('click', () => contextMenu.style.display = 'none');
-			newNoteBtn.addEventListener('click', async () => { const name = prompt('New doc name:'); if (name) { await api.createNode({type: 'file', title: name, parent_id: getParentIdForNewNode()}); await refreshFileTree(); } });
-			newFolderBtn.addEventListener('click', async () => { const name = prompt('New folder name:'); if (name) { await api.createNode({type: 'folder', title: name, parent_id: getParentIdForNewNode()}); await refreshFileTree(); } });
+			newNoteBtn.addEventListener('click', async () => { const name = prompt('请输入新文档名称：'); if (name) { await api.createNode({type: 'file', title: name, parent_id: getParentIdForNewNode()}); await refreshFileTree(); } });
+			newFolderBtn.addEventListener('click', async () => { const name = prompt('请输入新文件夹名称：'); if (name) { await api.createNode({type: 'folder', title: name, parent_id: getParentIdForNewNode()}); await refreshFileTree(); } });
 			fileTreeEl.addEventListener('click', e => {
 				const target = e.target.closest('.tree-item'); if (!target) return;
 				const id = target.dataset.id;
