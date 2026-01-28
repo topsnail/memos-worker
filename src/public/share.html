@@ -172,7 +172,8 @@
 		// 使用 DOMPurify 做一次基础净化，防止公开分享页被 XSS
 		if (window.DOMPurify && typeof window.DOMPurify.sanitize === 'function') {
 			rawHtml = window.DOMPurify.sanitize(rawHtml, {
-				ALLOWED_URI_REGEXP: /^(?:(?:https?|mailto|tel|data:image\/)|[^:]+$)/i
+				ALLOWED_URI_REGEXP: /^(?:(?:https?|mailto|tel|data:image\/)|[^:]+$)/i,
+				ADD_ATTR: ['class']
 			});
 		}
 
