@@ -88,6 +88,42 @@
   html[data-theme='dark'] .attachment-link { background-color: rgba(74, 85, 104, 0.5); color: #e2e8f0; border-color: #718096; }
   html[data-theme='dark'] .attachment-link:hover { background-color: rgba(45, 55, 72, 0.7); }
 
+  .code-block-wrapper {
+	position: relative;
+	margin: 1em 0;
+  }
+
+  .code-block-wrapper pre {
+	margin: 0;
+  }
+  .copy-code-btn {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 30px;
+	height: 30px;
+	padding: 0;
+	background-color: #616161;
+	color: white;
+	border: none;
+	border-radius: 0 4px 0 4px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+	transition: opacity 0.2s ease, background-color 0.2s ease;
+  }
+
+  .code-block-wrapper:hover .copy-code-btn {
+	opacity: 1;
+  }
+
+  .copy-code-btn:hover {
+	display: flex;
+	background-color: var(--primary-color);
+  }
+
 </style>
 <body>
 
@@ -140,6 +176,76 @@
 	};
 	const textFileExtensions = ['txt', 'js', 'json', 'py', 'css', 'html', 'md', 'sh', 'java', 'c', 'cpp', 'go', 'rb', 'xml', 'log', 'yaml', 'toml', 'yml'];
 
+	// --- 配置 marked.js：让分享页代码块和主站风格一致 ---
+	const renderer = new marked.Renderer();
+	const originalTableRenderer = renderer.table.bind(renderer);
+	const originalLinkRenderer = renderer.link.bind(renderer);
+	const originalImageRenderer = renderer.image.bind(renderer);
+
+	renderer.table = (header, body) => {
+		const tableHtml = originalTableRenderer(header, body);
+		return `<div class='table-wrapper'>${tableHtml}</div>`;
+	};
+
+	renderer.code = function(token) {
+		const code = token.text;
+		const lang = token.lang;
+		let result;
+		if (lang && hljs.getLanguage(lang)) {
+			result = hljs.highlight(code, { language: lang, ignoreIllegals: true });
+		} else {
+			result = hljs.highlightAuto(code);
+		}
+		const languageName = result.language || 'plaintext';
+		const highlightedCode = result.value;
+		const escapeHtml = (str) => {
+			return str
+				.replace(/&/g, '&amp;')
+				.replace(/</g, '&lt;')
+				.replace(/>/g, '&gt;')
+				.replace(/"/g, '&quot;')
+				.replace(/'/g, '&#39;');
+		};
+
+		const copyButtonHtml = `
+			<button class='copy-code-btn' data-code='${escapeHtml(code)}' title='复制代码'>
+				<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='9' y='9' width='13' height='13' rx='2' ry='2'></rect><path d='M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1'></path></svg>
+			</button>
+		`;
+
+		const finalHtml = `
+			<div class='code-block-wrapper'>
+				${copyButtonHtml}
+				<pre><code class='hljs language-${languageName}'>${highlightedCode}</code></pre>
+			</div>
+		`;
+		return finalHtml;
+	};
+
+	renderer.link = function(token) {
+		let linkHtml = originalLinkRenderer.call(this, token);
+		if (linkHtml.startsWith('<a ')) {
+			linkHtml = linkHtml.replace('<a ', '<a target="_blank" rel="noopener noreferrer" ');
+		}
+		return linkHtml;
+	};
+
+	renderer.image = function(href, title, text) {
+		let imageHtml = originalImageRenderer(href, title, text);
+		imageHtml = imageHtml.replace(
+			'<img ',
+			'<img class="note-image-attachment" style="cursor: zoom-in;" '
+		);
+		return imageHtml;
+	};
+
+	marked.setOptions({
+		renderer: renderer,
+		breaks: true,
+		gfm: true,
+		tables: true
+	});
+
 	function renderNote(note) {
 		const noteElement = document.createElement('div');
 		noteElement.className = 'note';
@@ -185,19 +291,8 @@
             ${attachmentsHTML}
 		`;
 
-		// 渲染 Markdown 中的数学公式
 		const contentElement = noteElement.querySelector('.note-content');
-		// 代码高亮
-		if (window.hljs && contentElement) {
-			contentElement.querySelectorAll('pre code').forEach((block) => {
-				try {
-					window.hljs.highlightElement(block);
-				} catch (e) {
-					console.error('highlight.js 高亮失败：', e);
-				}
-			});
-		}
-
+		// 渲染 Markdown 中的数学公式
 		if (window.renderMathInElement && contentElement) {
 			try {
 				window.renderMathInElement(contentElement, {
@@ -249,6 +344,31 @@
 		if (textFileExtensions.includes(fileName.split('.').pop().toLowerCase())) {
 			e.preventDefault();
 			window.open(`${link.href}?preview=true`, '_blank');
+		}
+	});
+
+	// 复制代码按钮（事件委托）
+	document.body.addEventListener('click', async (event) => {
+		const copyButton = event.target.closest('.copy-code-btn');
+		if (!copyButton) return;
+
+		const codeToCopy = copyButton.dataset.code;
+		const originalIcon = copyButton.innerHTML;
+		const successIcon = `<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'></polyline></svg>`;
+
+		try {
+			await navigator.clipboard.writeText(codeToCopy);
+			copyButton.innerHTML = successIcon;
+			copyButton.classList.add('copied');
+			copyButton.title = '已复制！';
+			setTimeout(() => {
+				copyButton.innerHTML = originalIcon;
+				copyButton.classList.remove('copied');
+				copyButton.title = '复制代码';
+			}, 2000);
+		} catch (err) {
+			console.error('复制失败：', err);
+			copyButton.title = '复制失败！';
 		}
 	});
 
