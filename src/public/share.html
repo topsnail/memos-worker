@@ -64,6 +64,27 @@
   .note-meta { font-size: 0.8rem; color: var(--text-secondary); }
   .note-content { word-wrap: break-word; font-size: 1rem; }
   .note-content a { color: var(--primary-color); }
+  .note-content ul,
+  .note-content ol {
+	padding-left: 1.5em;
+	margin-bottom: 1em;
+  }
+  .note-content li {
+	margin-bottom: 0.25em;
+  }
+  .note-content blockquote {
+	border-left: 3px solid var(--primary-color);
+	padding-left: 1em;
+	margin: 1em 0;
+	color: var(--text-secondary);
+  }
+  .note-content code {
+	background-color: var(--border-color);
+	padding: 0.2em 0.4em;
+	border-radius: 4px;
+	font-size: 85%;
+	font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+  }
   .note-content pre { padding: 1rem; border-radius: 8px; overflow-x: auto; background-color: rgba(0,0,0,0.05); }
   html[data-theme='dark'] .note-content pre { background-color: rgba(0,0,0,0.2); }
   .note-content pre code { background: none; padding: 0; }
