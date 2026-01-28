@@ -1,4 +1,3 @@
-[English](./README.md)
 
 # Memos Worker: 由 Cloudflare 驱动的笔记与知识库
 
