@@ -31,7 +31,7 @@
 	box-sizing: border-box;
   }
   html[data-theme='dark'] { background-image: url(/bg.jpg);  }
-  。wrapper { max-width: 1050px; margin: 0 auto; }
+  。wrapper { max-width: 900px; margin: 0 auto; }
   header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; color: var(--text-color); }
   header h3 { margin: 0; font-size: 1.5rem; }
   header h3 a {
@@ -184,7 +184,7 @@
 			}
 			const noteData = await response.json();
 
-			loader.style.display = 'none';
+			loader。style。display = 'none';
 			mainContent.appendChild(renderNote(noteData));
 
 		} catch (error) {
