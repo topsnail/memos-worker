@@ -4097,7 +4097,9 @@
 						{ left: '$', right: '$', display: false },
 						{ left: '\\(', right: '\\)', display: false }
 					],
-					throwOnError: false
+					// 在公式中允许出现中文等 Unicode 文本，不再在控制台输出严格模式警告
+					throwOnError: false,
+					strict: false
 				});
 			} catch (e) {
 				console.error('KaTeX 渲染公式出错：', e);

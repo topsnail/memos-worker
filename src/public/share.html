@@ -183,7 +183,9 @@
 						{ left: '$', right: '$', display: false },
 						{ left: '\\(', right: '\\)', display: false }
 					],
-					throwOnError: false
+					// 分享页同样允许中文等 Unicode 文本出现在公式环境中，避免严格模式警告
+					throwOnError: false,
+					strict: false
 				});
 			} catch (e) {
 				console.error('KaTeX 渲染分享页公式出错：', e);
