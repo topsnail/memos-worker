@@ -6126,6 +6126,8 @@
 	// 监听输入框的 'input' 事件
 	globalSearchInput.addEventListener('input', debounce(e => {
 		const query = e.target.value.trim();
+		// 即便查询过短不触发搜索，也要及时更新清除按钮的可见性
+		clearSearchBtn.style.display = query ? 'block' : 'none';
 		if (query.length === 0 || query.length >= 2) {
 			performSearch(query);
 		}
@@ -6137,6 +6139,8 @@
 		if (e.key === 'Enter') {
 			e.preventDefault();
 			const query = e.target.value.trim();
+			// 同步清除按钮显示状态（避免 1 个字符时看起来“没反应”）
+			clearSearchBtn.style.display = query ? 'block' : 'none';
 			if (query.length === 0 || query.length >= 2) {
 				clearTimeout(searchDebounceTimer);
 				performSearch(query);
