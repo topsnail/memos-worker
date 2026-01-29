@@ -278,6 +278,19 @@ async function handleSearchRequest(request, env) {
 		return jsonResponse({ notes: [], hasMore: false });
 	}
 
+	// 3. 构造 FTS5 查询（为每个 token 添加前缀通配符，提升“输入前几个字”的命中率）
+	//    同时尽量避免引号等特殊字符导致 MATCH 语法错误
+	const ftsQuery = query
+		.trim()
+		.split(/\s+/)
+		.map(t => t.replace(/["']/g, '').trim())
+		.filter(Boolean)
+		.map(t => `${t}*`)
+		.join(' ');
+	if (!ftsQuery || ftsQuery.length < 2) {
+		return jsonResponse({ notes: [], hasMore: false });
+	}
+
 	// --- 引入分页逻辑 ---
 	const page = parseInt(searchParams.get('page') || '1');
 	const offset = (page - 1) * NOTES_PER_PAGE;
@@ -289,8 +302,8 @@ async function handleSearchRequest(request, env) {
 
 	const db = env.DB;
 	try {
-		let whereClauses = ["notes_fts MATCH ?"];
-		let bindings = [query + '*'];
+		let whereClauses = ["fts MATCH ?"];
+		let bindings = [ftsQuery];
 		let joinClause = "";
 		if (isFavoritesMode) {
 			whereClauses.push("n.is_favorited = 1");
@@ -318,7 +331,7 @@ async function handleSearchRequest(request, env) {
             JOIN notes_fts fts ON n.id = fts.rowid
             ${joinClause}
             WHERE ${whereString}
-            ORDER BY rank
+            ORDER BY bm25(fts)
             LIMIT ? OFFSET ?
         `);
 
@@ -394,7 +407,11 @@ async function handleLogin(request, env) {
 				expirationTtl: SESSION_DURATION_SECONDS,
 			});
 			const headers = new Headers();
-			headers.append('Set-Cookie', `${SESSION_COOKIE}=${sessionId}; HttpOnly; Secure; SameSite=Strict; Max-Age=${SESSION_DURATION_SECONDS}`);
+			// 本地 wrangler dev 通常是 http://，带 Secure 的 Cookie 不会被客户端回传，导致所有 API 永远 401。
+			// 生产环境在 https 下仍会带 Secure。
+			const isHttps = new URL(request.url).protocol === 'https:';
+			const secureAttr = isHttps ? ' Secure;' : '';
+			headers.append('Set-Cookie', `${SESSION_COOKIE}=${sessionId}; HttpOnly;${secureAttr} SameSite=Strict; Max-Age=${SESSION_DURATION_SECONDS}`);
 			return jsonResponse({ success: true }, 200, headers);
 		}
 	} catch (e) {
@@ -415,7 +432,8 @@ async function handleLogout(request, env) {
 		}
 	}
 	const headers = new Headers();
-	headers.append('Set-Cookie', `${SESSION_COOKIE}=; HttpOnly; Secure; SameSite=Strict; Max-Age=0`);
+	// 这里不加 Secure，确保本地 http 环境也能正确清除 Cookie
+	headers.append('Set-Cookie', `${SESSION_COOKIE}=; HttpOnly; SameSite=Strict; Max-Age=0`);
 	return jsonResponse({ success: true }, 200, headers);
 }
 
