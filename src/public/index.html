@@ -5206,7 +5206,7 @@
 						scrollLoader.textContent = '没有更多笔记了。';
 						scrollLoader.style.display = 'block';
 					} else {
-						notesContainer.innerHTML = '<div style="text-align: center; color: var(--text-secondary); padding: 1rem 0;">Nothing here yet.</div>';
+						notesContainer.innerHTML = '<div style="text-align: center; color: var(--text-secondary); padding: 1rem 0;">暂无内容</div>';
 						scrollLoader.style.display = 'none';
 					}
 				}
@@ -5215,7 +5215,7 @@
 				showLoginScreen();
 			} else {
 				// 处理其他网络或服务器错误
-				throw new Error(`服务器检查失败，状态码：${response.status}`);
+				throw new 错误(`服务器检查失败，状态码：${response.status}`);
 			}
 		} catch (error) {
 			console.error('Initialization failed:', error);
@@ -7338,7 +7338,7 @@ function formatTimestamp(timestamp) {
 					scrollLoader.textContent = '没有更多笔记了。';
 					scrollLoader.style.display = 'block';
 				} else {
-					notesContainer.innerHTML = '<div style="text-align: center; color: var(--text-secondary); padding: 1rem 0;">Nothing here yet.</div>';
+					notesContainer.innerHTML = '<div style="text-align: center; color: var(--text-secondary); padding: 1rem 0;">暂无内容</div>';
 					scrollLoader.style.display = 'none';
 				}
 			}
