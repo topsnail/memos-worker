@@ -174,14 +174,29 @@
 		}
 	}, true);
 
-	// 忽略未捕获的 Promise 错误（如被阻止的资源）
+	// 处理未捕获的 Promise 错误，包括 localStorage 访问错误
 	window.addEventListener('unhandledrejection', (event) => {
-		if (event.reason && (
-			event.reason.message && event.reason.message.includes('ERR_BLOCKED_BY_CLIENT') ||
-			event.reason.message && event.reason.message.includes('cloudflareinsights')
-		)) {
+		const reason = event.reason;
+		const errorMessage = reason?.message || String(reason || '');
+		
+		// 忽略被阻止的资源加载错误
+		if (errorMessage.includes('ERR_BLOCKED_BY_CLIENT') || 
+			errorMessage.includes('cloudflareinsights')) {
 			event.preventDefault();
+			return;
 		}
+		
+		// 忽略 localStorage 访问错误（在某些上下文中不可用）
+		if (errorMessage.includes('Access to storage is not allowed') ||
+			errorMessage.includes('localStorage') ||
+			errorMessage.includes('sessionStorage')) {
+			console.warn('存储访问被阻止（可能是隐私模式或安全策略）:', errorMessage);
+			event.preventDefault();
+			return;
+		}
+		
+		// 其他错误可以继续传播，但至少不会导致页面崩溃
+		console.warn('未处理的 Promise rejection:', reason);
 	});
 
 	const themeToggleBtn = document.getElementById('theme-toggle-btn');
@@ -189,14 +204,29 @@
 	const loader = document.getElementById('loader');
 
 	// --- Theme Logic ---
+	// 安全的 localStorage 访问函数
+	const safeLocalStorage = {
+		getItem: (key) => {
+			try {
+				return localStorage.getItem(key);
+			} catch (e) {
+				console.warn('无法从 localStorage 读取:', key, e);
+				return null;
+			}
+		},
+		setItem: (key, value) => {
+			try {
+				localStorage.setItem(key, value);
+			} catch (e) {
+				console.warn('无法保存到 localStorage:', key, e);
+			}
+		}
+	};
+
 	const applyTheme = (theme) => {
 		document.documentElement.dataset.theme = theme;
-		try {
-			localStorage.setItem('share-theme', theme);
-		} catch (e) {
-			// localStorage 可能在某些上下文中不可用（如 iframe、隐私模式等）
-			console.warn('无法保存主题设置到 localStorage:', e);
-		}
+		// 使用安全的 localStorage 访问
+		safeLocalStorage.setItem('share-theme', theme);
 		themeToggleBtn.innerHTML = theme === 'dark'
 			? `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24px" height="24px"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l1.06 1.06c.39.39 1.02.39 1.41 0s.39-1.02 0-1.41L5.99 4.58zm12.02 12.02c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l1.06 1.06c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41l-1.06-1.06zM20 6.01c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.02 0 1.41s1.02.39 1.41 0l1.06-1.06zM7.05 18.01c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.02 0 1.41s1.02.39 1.41 0l1.06-1.06z"></path></svg>`
 			: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24px" height="24px"><path d="M10 2c-1.82 0-3.53.5-5 1.35C7.99 5.08 10 8.3 10 12s-2.01 6.92-5 8.65C6.47 21.5 8.18 22 10 22c5.52 0 10-4.48 10-10S15.52 2 10 2z"></path></svg>`;
@@ -207,12 +237,9 @@
 		const newTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
 		applyTheme(newTheme);
 	});
-	let savedTheme = 'light';
-	try {
-		savedTheme = localStorage.getItem('share-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-	} catch (e) {
-		// localStorage 可能在某些上下文中不可用（如 iframe、隐私模式等）
-		console.warn('无法从 localStorage 读取主题设置，使用默认值:', e);
+	// 使用安全的 localStorage 访问
+	let savedTheme = safeLocalStorage.getItem('share-theme');
+	if (!savedTheme) {
 		savedTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 	}
 	applyTheme(savedTheme);
