@@ -1,23 +1,10 @@
-name = "memos-worker"
-compatibility_date = "2025-08-19"
+name = "web-message"
 main = "src/index.js"
-[assets]
-directory = "./src/public"
-run_worker_first = [
-	"/api/*"
-]
-
+compatibility_date = "2024-01-01"
 [[d1_databases]]
 binding = "DB"
-database_id = "e7adb4fe-6a1b-46c9-9a9a-aa8c16f4e0ed"
-database_name = "notes-db"
-
-[[kv_namespaces]]
-binding = "NOTES_KV"
-id = "fd786a960f2d4af8afbd28376f32803a"
-preview_id = ""
-
-[[r2_buckets]]
-binding = "NOTES_R2_BUCKET"
-bucket_name = "notes-r2-bucket"
-preview_bucket_name = "notes-files-preview"
+database_name = "message-board-db"
+database_id = "cadc7c30-de75-4a78-9c33-bc292ac74b48"  
+[[rules]]
+type = "Text"
+globs = ["**/*.html"]
