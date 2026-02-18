@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang='zh-CN'>
+<head>
+	<meta charset='UTF-8'>
+	<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+	<title>数学公式测试</title>
+	<link rel='stylesheet' href='/vendor/katex.min.css'>
+	<script defer src='/vendor/katex.min.js'></script>
+	<script defer src='/vendor/auto-render.min.js'></script>
+	<style>
+		body {
+			font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+			max-width: 900px;
+			margin: 0 auto;
+			padding: 2rem;
+			line-height: 1.6;
+			background-color: #f4f7f9;
+		}
+		h1 {
+			color: #367cff;
+			border-bottom: 2px solid #367cff;
+			padding-bottom: 0.5rem;
+		}
+		h2 {
+			color: #333;
+			margin-top: 2rem;
+			border-left: 4px solid #367cff;
+			padding-left: 1rem;
+		}
+		.formula-container {
+			background: white;
+			padding: 1.5rem;
+			margin: 1rem 0;
+			border-radius: 8px;
+			box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+		}
+		.formula-code {
+			background: #f5f5f5;
+			padding: 0.5rem 1rem;
+			border-radius: 4px;
+			font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+			font-size: 0.9rem;
+			margin-bottom: 1rem;
+			color: #333;
+		}
+		.formula-display {
+			font-size: 1.2rem;
+			padding: 1rem;
+			text-align: center;
+			background: #fafafa;
+			border-radius: 4px;
+		}
+		.status {
+			display: inline-block;
+			padding: 0.25rem 0.75rem;
+			border-radius: 12px;
+			font-size: 0.85rem;
+			font-weight: 500;
+		}
+		.status.success {
+			background: #d4edda;
+			color: #155724;
+		}
+		.status.error {
+			background: #f8d7da;
+			color: #721c24;
+		}
+	</style>
+</head>
+<body>
+	<h1>🧮 Memos Worker 数学公式支持测试</h1>
+	<p>此页面用于测试 KaTeX 对各种数学公式的支持情况。</p>
+
+	<h2>1. 行内公式（嵌入文本中）</h2>
+	<div class='formula-container'>
+		<div class='formula-code'>$E=mc^2$</div>
+		<div class='formula-display'>这是行内公式：$E=mc^2$，这是带上下标的行内公式：$x_{i}^{2} + y_{j}^{3} = z_{k}$</div>
+	</div>
+
+	<h2>2. 独立公式（单独成行，居中显示）</h2>
+	<div class='formula-container'>
+		<div class='formula-code'>$$a + b = c$$</div>
+		<div class='formula-display'>$$a + b = c$$</div>
+	</div>
+	<div class='formula-container'>
+		<div class='formula-code'>$$a \times b = c \quad (或 \quad a \cdot b = c)$$</div>
+		<div class='formula-display'>$$a \times b = c \quad (或 \quad a \cdot b = c)$$</div>
+	</div>
+	<div class='formula-container'>
+		<div class='formula-code'>$$a \div b = c \quad (或 \quad \frac{a}{b} = c)$$</div>
+		<div class='formula-display'>$$a \div b = c \quad (或 \quad \frac{a}{b} = c)$$</div>
+	</div>
+
+	<h2>3. 分式</h2>
+	<div class='formula-container'>
+		<div class='formula-code'>$$\frac{n!}{k!(n-k)!} = C_{n}^{k}$$</div>
+		<div class='formula-display'>$$\frac{n!}{k!(n-k)!} = C_{n}^{k}$$</div>
+	</div>
+
+	<h2>4. 根号</h2>
+	<div class='formula-container'>
+		<div class='formula-code'>$$\sqrt{x^2 + y^2} = r$$</div>
+		<div class='formula-display'>$$\sqrt{x^2 + y^2} = r$$</div>
+	</div>
+	<div class='formula-container'>
+		<div class='formula-code'>$$\sqrt[3]{8} = 2 \quad (三次根号)$$</div>
+		<div class='formula-display'>$$\sqrt[3]{8} = 2 \quad (三次根号)$$</div>
+	</div>
+
+	<h2>5. 绝对值</h2>
+	<div class='formula-container'>
+		<div class='formula-code'>$$|x - a| < \varepsilon$$</div>
+		<div class='formula-display'>$$|x - a| < \varepsilon$$</div>
+	</div>
+
+	<h2>6. 求和</h2>
+	<div class='formula-container'>
+		<div class='formula-code'>$$\sum_{i=1}^{n} i = \frac{n(n+1)}{2}$$</div>
+		<div class='formula-display'>$$\sum_{i=1}^{n} i = \frac{n(n+1)}{2}$$</div>
+	</div>
+
+	<h2>7. 积分</h2>
+	<div class='formula-container'>
+		<div class='formula-code'>$$\int_{0}^{1} x^2 dx = \frac{1}{3}$$</div>
+		<div class='formula-display'>$$\int_{0}^{1} x^2 dx = \frac{1}{3}$$</div>
+	</div>
+	<div class='formula-container'>
+		<div class='formula-code'>$$\int_{-\infty}^{+\infty} e^{-x^2} dx = \sqrt{\pi} \quad (反常积分)$$</div>
+		<div class='formula-display'>$$\int_{-\infty}^{+\infty} e^{-x^2} dx = \sqrt{\pi} \quad (反常积分)$$</div>
+	</div>
+
+	<h2>8. 极限</h2>
+	<div class='formula-container'>
+		<div class='formula-code'>$$\lim_{x \to 0} \frac{\sin x}{x} = 1$$</div>
+		<div class='formula-display'>$$\lim_{x \to 0} \frac{\sin x}{x} = 1$$</div>
+	</div>
+
+	<h2>9. 简单矩阵</h2>
+	<div class='formula-container'>
+		<div class='formula-code'>$$\begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{bmatrix}$$</div>
+		<div class='formula-display'>$$\begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{bmatrix}$$</div>
+	</div>
+
+	<h2>10. 带括号的矩阵</h2>
+	<div class='formula-container'>
+		<div class='formula-code'>$$\begin{pmatrix} a & b \\ c & d \end{pmatrix}$$</div>
+		<div class='formula-display'>$$\begin{pmatrix} a & b \\ c & d \end{pmatrix}$$</div>
+	</div>
+
+	<h2>11. 空元素矩阵</h2>
+	<div class='formula-container'>
+		<div class='formula-code'>$$\begin{bmatrix} 1 & & 3 \\ & 5 & \\ 7 & & 9 \end{bmatrix}$$</div>
+		<div class='formula-display'>$$\begin{bmatrix} 1 & & 3 \\ & 5 & \\ 7 & & 9 \end{bmatrix}$$</div>
+	</div>
+
+	<h2>12. 希腊字母</h2>
+	<div class='formula-container'>
+		<div class='formula-code'>$$\alpha + \beta = \gamma \quad (小写)$$</div>
+		<div class='formula-display'>$$\alpha + \beta = \gamma \quad (小写)$$</div>
+	</div>
+	<div class='formula-container'>
+		<div class='formula-code'>$$\Gamma + \Delta = \Theta \quad (大写)$$</div>
+		<div class='formula-display'>$$\Gamma + \Delta = \Theta \quad (大写)$$</div>
+	</div>
+	<div class='formula-container'>
+		<div class='formula-code'>$$\pi \approx 3.14159, \quad \sigma^2 表示方差$$</div>
+		<div class='formula-display'>$$\pi \approx 3.14159, \quad \sigma^2 表示方差$$</div>
+	</div>
+
+	<h2>13. LaTeX 标准语法测试</h2>
+	<div class='formula-container'>
+		<div class='formula-code'>\[ \int_{a}^{b} f(x) dx = F(b) - F(a) \]</div>
+		<div class='formula-display'>\[ \int_{a}^{b} f(x) dx = F(b) - F(a) \]</div>
+	</div>
+	<div class='formula-container'>
+		<div class='formula-code'>\( \sum_{i=1}^{n} i = \frac{n(n+1)}{2} \)</div>
+		<div class='formula-display'>\( \sum_{i=1}^{n} i = \frac{n(n+1)}{2} \)</div>
+	</div>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			if (window.renderMathInElement) {
+				try {
+					window.renderMathInElement(document.body, {
+						delimiters: [
+							{ left: '$$', right: '$$', display: true },
+							{ left: '\\[', right: '\\]', display: true },
+							{ left: '$', right: '$', display: false },
+							{ left: '\\(', right: '\\)', display: false }
+						],
+						throwOnError: false,
+						strict: false
+					});
+					console.log('✅ KaTeX 渲染成功');
+				} catch (e) {
+					console.error('❌ KaTeX 渲染失败:', e);
+					alert('KaTeX 渲染失败，请检查控制台');
+				}
+			} else {
+				console.error('❌ KaTeX 未加载');
+				alert('KaTeX 库未加载，请检查网络连接');
+			}
+		});
+	</script>
+</body>
+</html>
