@@ -399,10 +399,10 @@ async function isSessionAuthenticated(request, env) {
  */
 async function handleLogin(request, env) {
 	try {
-		const { username, password } = await request.json();
-		if (username === env.USERNAME && password === env.PASSWORD) {
+		const { password } = await request.json();
+		if (password === env.PASSWORD) {
 			const sessionId = crypto.randomUUID();
-			const sessionData = { username, loggedInAt: Date.now() };
+			const sessionData = { loggedInAt: Date.now() };
 			await env.NOTES_KV.put(`session:${sessionId}`, JSON.stringify(sessionData), {
 				expirationTtl: SESSION_DURATION_SECONDS,
 			});
