@@ -338,10 +338,92 @@
 		});
 	}
 
+	// --- KaTeX display-math 兼容性修正（与主站一致）---
+	// marked 在 breaks=true 时会把换行变成 <br>，这会破坏 `$$...$$` 多行公式的识别/渲染（尤其是矩阵）。
+	// 这里在进入 marked.parse 前，对块级 `$$` 公式做轻量预处理：
+	// - 将 `$$` 内多行压缩成单行（避免生成 <br>）
+	// - 将行末误写的单个 `\` 自动修正为 `\\`
+	(function installKatexMathNormalizer() {
+		if (typeof marked === 'undefined' || typeof marked.parse !== 'function') return;
+		if (marked.__memosKatexNormalizerInstalled) return;
+		marked.__memosKatexNormalizerInstalled = true;
+
+		const originalParse = marked.parse.bind(marked);
+
+		function normalizeDisplayMathBlocks(src) {
+			if (typeof src !== 'string' || src.indexOf('$$') === -1) return src;
+
+			const lines = src.split(/\r?\n/);
+			const out = [];
+			let inFence = false;
+			let fence = '';
+			let inMath = false;
+			let mathLines = [];
+
+			const flushMathAsOneLine = () => {
+				let body = mathLines.join('\n');
+				body = body.replace(/(^|[^\\])\\\s*$/gm, '$1\\\\');
+				body = body.replace(/\s*\n\s*/g, ' ').replace(/\s{2,}/g, ' ').trim();
+				out.push(`$$${body}$$`);
+				mathLines = [];
+			};
+
+			for (const line of lines) {
+				const trimmed = line.trim();
+				const fenceMatch = trimmed.match(/^(```+|~~~+)\s*/);
+				if (fenceMatch) {
+					if (inMath) {
+						out.push('$$', ...mathLines);
+						inMath = false;
+						mathLines = [];
+					}
+					const marker = fenceMatch[1];
+					if (!inFence) {
+						inFence = true;
+						fence = marker[0];
+					} else if (marker[0] === fence) {
+						inFence = false;
+						fence = '';
+					}
+					out.push(line);
+					continue;
+				}
+
+				if (!inFence) {
+					if (!inMath && trimmed === '$$') {
+						inMath = true;
+						mathLines = [];
+						continue;
+					}
+					if (inMath && trimmed === '$$') {
+						inMath = false;
+						flushMathAsOneLine();
+						continue;
+					}
+					if (inMath) {
+						mathLines.push(line);
+						continue;
+					}
+				}
+
+				out.push(line);
+			}
+
+			if (inMath) {
+				out.push('$$', ...mathLines);
+			}
+
+			return out.join('\n');
+		}
+
+		marked.parse = function (src, options) {
+			return originalParse(normalizeDisplayMathBlocks(src), options);
+		};
+	})();
+
 	function renderNote(note) {
 		const noteElement = document.createElement('div');
 		noteElement.className = 'note';
-		const time = formatTimestamp(note.updated_at);
 
 		let attachmentsHTML = '';
 		const files = note.files || [];
@@ -397,22 +479,10 @@
 		}
 	}
 
-		// 使用 textContent 设置时间戳，避免 XSS，但使用 innerHTML 设置内容以支持 HTML 渲染
-		const headerDiv = document.createElement('div');
-		headerDiv.className = 'note-header';
-		const metaDiv = document.createElement('div');
-		metaDiv.className = 'note-meta';
-		const timeSpan = document.createElement('span');
-		timeSpan.title = new Date(note.updated_at).toISOString();
-		timeSpan.textContent = time;
-		metaDiv.appendChild(timeSpan);
-		headerDiv.appendChild(metaDiv);
-		
 		const contentDiv = document.createElement('div');
 		contentDiv.className = 'note-content';
 		contentDiv.innerHTML = rawHtml; // 使用 innerHTML 以支持 HTML 渲染
 		
-		noteElement.appendChild(headerDiv);
 		noteElement.appendChild(contentDiv);
 		
 		// 如果有附件，添加附件 HTML

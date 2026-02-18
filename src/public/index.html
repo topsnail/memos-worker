@@ -3810,6 +3810,96 @@
 		tables: true
 	});
 
+	// --- KaTeX display-math 兼容性修正 ---
+	// marked 在 breaks=true 时会把换行变成 <br>，会导致 `$$...$$` 内部被拆成多个节点，
+	// 从而让 KaTeX auto-render 无法正确识别/渲染多行公式（尤其是矩阵）。
+	// 这里在进入 marked.parse 前，针对常见的块级 `$$` 公式做轻量预处理：
+	// - 将 `$$` 包裹的多行内容压缩为单行（避免生成 <br>）
+	// - 将行末误写的单个 `\` 自动修正为 `\\`（矩阵换行）
+	(function installKatexMathNormalizer() {
+		if (typeof marked === 'undefined' || typeof marked.parse !== 'function') return;
+		if (marked.__memosKatexNormalizerInstalled) return;
+		marked.__memosKatexNormalizerInstalled = true;
+
+		const originalParse = marked.parse.bind(marked);
+
+		function normalizeDisplayMathBlocks(src) {
+			if (typeof src !== 'string' || src.indexOf('$$') === -1) return src;
+
+			const lines = src.split(/\r?\n/);
+			const out = [];
+			let inFence = false;
+			let fence = '';
+			let inMath = false;
+			let mathLines = [];
+
+			const flushMathAsOneLine = () => {
+				let body = mathLines.join('\n');
+				// 修正行末单个反斜杠为 KaTeX 需要的双反斜杠（矩阵行分隔）
+				body = body.replace(/(^|[^\\])\\\s*$/gm, '$1\\\\');
+				// 压缩为单行，避免 marked 生成 <br>
+				body = body.replace(/\s*\n\s*/g, ' ').replace(/\s{2,}/g, ' ').trim();
+				out.push(`$$${body}$$`);
+				mathLines = [];
+			};
+
+			for (const line of lines) {
+				const trimmed = line.trim();
+
+				// fenced code block: ``` 或 ~~~
+				const fenceMatch = trimmed.match(/^(```+|~~~+)\s*/);
+				if (fenceMatch) {
+					if (inMath) {
+						// 不完整的公式块，原样回写
+						out.push('$$', ...mathLines);
+						inMath = false;
+						mathLines = [];
+					}
+					const marker = fenceMatch[1];
+					if (!inFence) {
+						inFence = true;
+						fence = marker[0];
+					} else if (marker[0] === fence) {
+						inFence = false;
+						fence = '';
+					}
+					out.push(line);
+					continue;
+				}
+
+				if (!inFence) {
+					if (!inMath && trimmed === '$$') {
+						inMath = true;
+						mathLines = [];
+						continue;
+					}
+					if (inMath && trimmed === '$$') {
+						inMath = false;
+						flushMathAsOneLine();
+						continue;
+					}
+					if (inMath) {
+						mathLines.push(line);
+						continue;
+					}
+				}
+
+				out.push(line);
+			}
+
+			// 未闭合的 $$ 块：原样拼回
+			if (inMath) {
+				out.push('$$', ...mathLines);
+			}
+
+			return out.join('\n');
+		}
+
+		marked.parse = function (src, options) {
+			return originalParse(normalizeDisplayMathBlocks(src), options);
+		};
+	})();
+
 	const calendarWrapper = document.getElementById('calendar-wrapper');
 	const calendarTooltip = document.getElementById('calendar-tooltip'); // 【新增】
 	let notesDataByDate = new Map();
