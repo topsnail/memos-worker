@@ -10,7 +10,7 @@
 	<script defer src='/vendor/auto-render.min.js'></script>
 	<title>Memos 笔记</title>
 	<script src='/vendor/turndown.js'></script>
-	<script src='/vendor/highlight.min.js'></script>
+	<script src='/vendor/hljs.min.js'></script>
 	<link id='hljs-light-theme' rel='stylesheet'
 				href='/vendor/hljs-github.min.css'>
 	<link id='hljs-dark-theme' rel='stylesheet'
@@ -3759,10 +3759,15 @@
 		const code = token.text;
 		const lang = token.lang;
 		let result;
-		if (lang && hljs.getLanguage(lang)) {
-			result = hljs.highlight(code, { language: lang, ignoreIllegals: true });
+		// 如果 highlight.js 未正确加载，优雅降级为不高亮的代码块，避免整个应用崩溃
+		if (typeof hljs !== 'undefined') {
+			if (lang && hljs.getLanguage(lang)) {
+				result = hljs.highlight(code, { language: lang, ignoreIllegals: true });
+			} else {
+				result = hljs.highlightAuto(code);
+			}
 		} else {
-			result = hljs.highlightAuto(code);
+			result = { language: lang || 'plaintext', value: code };
 		}
 		const languageName = result.language || 'plaintext';
 		const highlightedCode = result.value;
@@ -3933,7 +3938,7 @@
 			this.container.appendChild(header);
 			const nextMonthBtn = document.getElementById('calendar-next');
 			const firstDayOfNextMonth = new Date(year, month + 1, 1);
-			if (firstDayOfNextMonth > this.today) {
+			if (nextMonthBtn && firstDayOfNextMonth > this.today) {
 				nextMonthBtn.disabled = true;
 			}
 
@@ -5309,14 +5314,21 @@
 			}
 		} catch (error) {
 			console.error('Initialization failed:', error);
-			document.body.innerHTML = '应用初始化失败。请检查您的网络连接并重试。';
+			// 避免清空整个 body，防止后续脚本访问到空的 DOM 节点
+			const toast = document.getElementById('toast-notification');
+			if (toast) {
+				toast.textContent = '应用初始化失败。请检查您的网络连接并重试。';
+				toast.classList.add('visible');
+			}
 		} finally {
 			document.body.classList.remove('loading');
 			const initialLoader = document.getElementById('initial-loader');
-			initialLoader.style.opacity = '0';
-			setTimeout(() => {
-				initialLoader.style.display = 'none';
-			}, 200);
+			if (initialLoader) {
+				initialLoader.style.opacity = '0';
+				setTimeout(() => {
+					initialLoader.style.display = 'none';
+				}, 200);
+			}
 		}
 	}
 
@@ -5324,6 +5336,11 @@
 		const noteForm = document.getElementById('note-form');
 		const textarea = document.getElementById('note-input');
 		const preview = document.getElementById('main-edit-preview');
+
+		// 如果主编辑区域尚未渲染（例如初始化失败或仍在登录页），直接跳过
+		if (!noteForm || !textarea || !preview) {
+			return;
+		}
 
 		// 如果当前不是分栏模式，只需确保 textarea 高度自适应即可
 		if (!noteForm.classList.contains('split-mode')) {
